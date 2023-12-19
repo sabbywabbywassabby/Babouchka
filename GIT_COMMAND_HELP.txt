@@ -1,0 +1,31 @@
+COMMANDES CLASSIQUES :
+
+git add _file_                      //ajout d'un fichier précis
+git add .
+git add --all                       //permet de rajouter au commit les supression de fichier
+git commit -m _message_             //mise à jour locale
+git push                            //mise à jour sur le dépot
+
+
+
+AFFICHAGE ET GESTION DES COMMIT PASSES :
+
+git log --pretty="%C(Yellow)%h  %C(blue)%ad %C(Green) (%cr)%x09 %C(Cyan)%al: %C(magenta)%s %Cred %d" --date=short -7  // Affichage des commits passés mis en forment
+
+git log                                        //affiche les commit passé
+git log --oneline                              //affiche les commit passé en format réduit
+
+git checkout _id_du_commit_passe_              //remet la version choisie sur le répo local ATTENTION NE PAS FAIRE DE MODIFICATION
+git checkout master                            //revient à la dernière version commitée ATTENTION
+git checkout _id_du_commit_passe_ _file_name_  //revient à une version précédente pour un fichier précis ON PEUT MODIFIER LE FICHIER
+git checkout master _file_name_                //revient à la dernière version commitée d'un fichier précis ON PEUT MODIFIER LE FICHIER
+
+git revert _id_du_commit_passe_   +   :wq      //permet de défaire un commit ATTENTION (on ne pert rien dans l'historique)
+
+
+GESTION DES BRANCHES :
+git branch                                     //affiche toutes les branches et sur la quelles je suis
+git branch _nom_de_branche_                    //permet de créer une nouvelle branche
+git branch -d _nom_de_branche_                 //suprime une branche ATTENTION
+git checkout _nom_de_branche_                  //permet de changer de branche
+git merge _nom_de_branche_                     //branche devient master ATTENTION AUX CONFLITS
