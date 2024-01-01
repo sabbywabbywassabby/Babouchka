@@ -30,4 +30,14 @@ public class Moteur : MonoBehaviour
         PerformMovement();
     }
 
+    void Update()
+    {
+        float x = Input.GetAxisRaw("Vertical");
+
+        //Jump
+        if (Input.GetKeyDown(KeyCode.Space) && x==0)
+        {
+            rb.AddForce(Vector3.up * 400);
+        }
+    }
 }
