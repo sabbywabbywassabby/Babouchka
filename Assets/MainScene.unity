@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 135832082}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Sol
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -293,13 +293,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6389182828535969182, guid: 1b521e989c39fb544aaf387f9eda3db9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389182828535969182, guid: 1b521e989c39fb544aaf387f9eda3db9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389182828535969182, guid: 1b521e989c39fb544aaf387f9eda3db9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 5238937863424275739, guid: 1b521e989c39fb544aaf387f9eda3db9, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 6389182828535969182, guid: 1b521e989c39fb544aaf387f9eda3db9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1805653521}
-    - targetCorrespondingSourceObject: {fileID: 5238937863424275739, guid: 1b521e989c39fb544aaf387f9eda3db9, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 6389182828535969182, guid: 1b521e989c39fb544aaf387f9eda3db9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1689401292}
     m_AddedComponents: []
@@ -573,11 +585,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!4 &664103286 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5238937863424275739, guid: 1b521e989c39fb544aaf387f9eda3db9, type: 3}
-  m_PrefabInstance: {fileID: 381806271}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &752556431
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,7 +658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  sensitivity: -2
+  lookSensitivity: 5
 --- !u!114 &752556435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -664,6 +671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c10be1cf984a14288a1ae8acc40fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 581018539}
 --- !u!54 &752556436
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -796,6 +804,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 928839274}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &898666945 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6389182828535969182, guid: 1b521e989c39fb544aaf387f9eda3db9, type: 3}
+  m_PrefabInstance: {fileID: 381806271}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &928839273
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,7 +844,7 @@ Transform:
   - {fileID: 2140503115}
   - {fileID: 1340053771}
   - {fileID: 1791440035}
-  - {fileID: 664103286}
+  - {fileID: 898666945}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1011391821
@@ -1257,7 +1270,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 5, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 664103286}
+  m_Father: {fileID: 898666945}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1689401293
 BoxCollider:
@@ -1524,7 +1537,7 @@ Transform:
   m_LocalScale: {x: 7.2, y: 5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 664103286}
+  m_Father: {fileID: 898666945}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1805653522
 BoxCollider:

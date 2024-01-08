@@ -5,10 +5,12 @@ public class Controleur : MonoBehaviour
 {
     [SerializeField]
     private float speed;
+
+    [SerializeField]
+    private float lookSensitivity = 5f;
+
     private Moteur motor;
 
-    public float sensitivity = -2f;
-    private Vector3 rotate;
 
     void Start()
     {
@@ -30,11 +32,18 @@ public class Controleur : MonoBehaviour
         motor.Move(velocite);
 
         //Deplacement de la souris
-        float y = Input.GetAxisRaw("Mouse X");
-        float x = Input.GetAxisRaw("Mouse Y");
-        rotate = new Vector3(x, y * sensitivity, 0);
+        float yrot = Input.GetAxisRaw("Mouse X");
+        float xrot = Input.GetAxisRaw("Mouse Y");
+        //Rotation du joueur
+        Vector3 rotation = new Vector3(0, yrot, 0) * lookSensitivity;
+        motor.Rotate(rotation);
+        //rotation de la camera
+        Vector3 cameraRot = new Vector3(xrot, 0, 0) * lookSensitivity;
+        motor.RotateCamera(cameraRot);
+
         
-        transform.eulerAngles = transform.eulerAngles - rotate;
+        //rotate = new Vector3(x, y * sensitivity, 0);
+        //transform.eulerAngles = transform.eulerAngles - rotate;
 
     }
 }
