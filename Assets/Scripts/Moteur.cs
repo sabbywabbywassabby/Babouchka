@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -5,7 +6,8 @@ public class Moteur : MonoBehaviour
 {
     private Vector3 velocite;
     private Rigidbody rb;
-    
+
+    private bool peutSauter = true;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -25,6 +27,15 @@ public class Moteur : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        //lorsque le joueur est au sol il peut sauter a nouveau
+        if (collision.gameObject.CompareTag("Sol"))
+        {
+            peutSauter = true;
+        }
+    }
+
     private void FixedUpdate()
     {
         PerformMovement();
@@ -32,12 +43,12 @@ public class Moteur : MonoBehaviour
 
     void Update()
     {
-        float x = Input.GetAxisRaw("Vertical");
 
         //Jump
-        if (Input.GetKeyDown(KeyCode.Space) && x==0)
+        if (Input.GetButtonDown("Jump") && peutSauter)
         {
-            rb.AddForce(Vector3.up * 400);
+            rb.AddForce(Vector3.up * 10, ForceMode.Impulse);
+            peutSauter = false;
         }
     }
 }
