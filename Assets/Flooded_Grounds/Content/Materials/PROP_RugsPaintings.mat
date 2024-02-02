@@ -15,7 +15,6 @@ Material:
   - _DETAIL_MULX2
   - _EMISSION
   - _METALLICGLOSSMAP
-  - _NORMALMAP
   m_InvalidKeywords: []
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
