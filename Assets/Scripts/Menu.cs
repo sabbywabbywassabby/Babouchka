@@ -43,3 +43,26 @@ public class Menu : MonoBehaviour
 
 
 }
+
+public class DelayedCanvasActivation : MonoBehaviour
+{
+    public Canvas Menu;
+    public float delayInSeconds = 2f;
+
+    void Start()
+    {
+        Invoke("ActivateCanvas", delayInSeconds);
+    }
+
+    void ActivateCanvas()
+    {
+        if (Menu != null)
+        {
+            Menu.gameObject.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("Le Canvas n'est pas référencé dans le script.");
+        }
+    }
+}
