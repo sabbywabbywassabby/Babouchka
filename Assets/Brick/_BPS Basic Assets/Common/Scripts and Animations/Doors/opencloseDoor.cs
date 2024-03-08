@@ -17,6 +17,10 @@ namespace SojaExiles
 			open = false;
 		}
 
+		public void SetPlayer(Transform p){
+			Player = p;
+		}
+
 		void OnMouseOver()
 		{
 			{
