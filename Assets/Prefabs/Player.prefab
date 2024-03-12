@@ -362,6 +362,7 @@ MonoBehaviour:
   - {fileID: 4648873017796994888}
   - {fileID: 2922295037866769645}
   - {fileID: 7824720000650486494}
+  Flash: {fileID: 8041027984480919132}
 --- !u!114 &-4320659711575846489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,5 +477,10 @@ PrefabInstance:
 --- !u!4 &7267869672534803686 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2c5e779568bc06c4d947ac355f408a35, type: 3}
+  m_PrefabInstance: {fileID: 7157927936383312653}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8041027984480919132 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2c5e779568bc06c4d947ac355f408a35, type: 3}
   m_PrefabInstance: {fileID: 7157927936383312653}
   m_PrefabAsset: {fileID: 0}

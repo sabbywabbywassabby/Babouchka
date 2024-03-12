@@ -10,14 +10,14 @@ public class PlayerSetup : NetworkBehaviour
     [SerializeField]
     private Behaviour[] componentsToDisable;
 
-    public Component doorscript;
-
-    public GameObject DoorsParent;
-
+    private GameObject DoorsParent;
+    private GameObject Key;
+    public GameObject Flash;
     Camera sceneCamera;
     private void Start()
     {
         DoorsParent = GameObject.Find("DoorsParent");
+        Key = GameObject.Find("key");
 
         if (!isLocalPlayer)
         {
@@ -34,6 +34,9 @@ public class PlayerSetup : NetworkBehaviour
                 sceneCamera.gameObject.SetActive(false);
             }
 
+            PickUp p = Key.GetComponentInChildren<PickUp>();
+            p.SetKey(Flash);
+           
             foreach(Transform c in DoorsParent.transform)
             {
                 opencloseDoor doorComponent1 = c.GetComponentInChildren<opencloseDoor>();

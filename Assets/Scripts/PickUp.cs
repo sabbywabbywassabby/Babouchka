@@ -7,6 +7,11 @@ public class PickUp : MonoBehaviour
 {
     public GameObject PickUpText;
     public GameObject FlashLightOnPlayer;
+
+    public void SetKey(GameObject k)
+    {
+        FlashLightOnPlayer = k;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -32,10 +37,11 @@ public class PickUp : MonoBehaviour
     {
         PickUpText.SetActive(false);
     }
-
+    
     // Update is called once per frame
     void Update()
     {
         
     }
+    
 }
