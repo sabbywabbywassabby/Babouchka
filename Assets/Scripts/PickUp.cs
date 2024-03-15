@@ -37,6 +37,24 @@ public class PickUp : MonoBehaviour
     {
         PickUpText.SetActive(false);
     }
+
+    public void Drop()
+    {
+   
+            // Désactivez la clé attachée au joueur
+        if (FlashLightOnPlayer != null)
+            {
+                FlashLightOnPlayer.SetActive(false);
+
+                // Réinitialisez la position de la clé devant le joueur
+                // Vous pouvez définir une position spécifique pour le réapparition de la clé
+                // Par exemple, utilisez la position du joueur pour le placer devant lui
+                Vector3 dropPosition = FlashLightOnPlayer.transform.position + transform.forward * 2.0f; // À 2 unités devant le joueur
+                this.gameObject.transform.position = dropPosition;
+                this.gameObject.SetActive(true);
+
+            }
+    }
     
     // Update is called once per frame
     void Update()

@@ -11,6 +11,7 @@ namespace SojaExiles
 		public Animator openandclose1;
 		public bool open;
 		public Transform Player;
+		private GameObject cle;
 
 		void Start()
 		{
@@ -19,12 +20,13 @@ namespace SojaExiles
 
 		public void SetPlayer(Transform p){
 			Player = p;
+			cle = Player.Find("key").gameObject;
 		}
 		
 		void OnMouseOver()
 		{
 			{
-				if (Player)
+				if (Player && cle.activeSelf)
 				{
 					float dist = Vector3.Distance(Player.position, transform.position);
 					if (dist < 15)

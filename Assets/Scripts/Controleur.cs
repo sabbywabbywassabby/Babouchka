@@ -7,6 +7,9 @@ public class Controleur : MonoBehaviour
     private float speed;
     private Moteur motor;
 
+    private GameObject Cle;
+    private PickUp p;
+
     public float sensitivity = -2f;
     private Vector3 rotate;
 
@@ -15,6 +18,8 @@ public class Controleur : MonoBehaviour
         motor = GetComponent<Moteur>();
 
         Cursor.lockState = CursorLockMode.Locked;
+        Cle = GameObject.Find("key");
+        p = Cle.GetComponentInChildren<PickUp>();
     }
 
     
@@ -35,6 +40,11 @@ public class Controleur : MonoBehaviour
         rotate = new Vector3(x, y * sensitivity, 0);
         
         transform.eulerAngles = transform.eulerAngles - rotate;
+
+        if (Input.GetKey(KeyCode.Q)) // Si le joueur appuie sur la touche Q
+        {
+            p.Drop();
+        }
 
     }
 }
