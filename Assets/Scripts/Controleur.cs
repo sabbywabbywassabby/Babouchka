@@ -25,7 +25,7 @@ public class Controleur : MonoBehaviour
     
     void Update()
     {
-        //Velocité, mouvement
+        //Velocitï¿½, mouvement
         float xMov = Input.GetAxisRaw("Horizontal");
         float zMov = Input.GetAxisRaw("Vertical");
         Vector3 moveH = transform.right * xMov;
@@ -40,11 +40,11 @@ public class Controleur : MonoBehaviour
         rotate = new Vector3(x, y * sensitivity, 0);
         
         transform.eulerAngles = transform.eulerAngles - rotate;
-
+/*
         if (Input.GetKey(KeyCode.Q)) // Si le joueur appuie sur la touche Q
         {
             p.Drop();
         }
-
+*/
     }
 }

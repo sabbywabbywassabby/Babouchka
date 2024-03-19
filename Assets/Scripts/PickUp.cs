@@ -38,19 +38,18 @@ public class PickUp : MonoBehaviour
         PickUpText.SetActive(false);
     }
 
-    public void Drop()
+    public void Drop(Vector3 droposition)
     {
    
-            // Désactivez la clé attachée au joueur
+            // Dï¿½sactivez la clï¿½ attachï¿½e au joueur
         if (FlashLightOnPlayer != null)
             {
                 FlashLightOnPlayer.SetActive(false);
 
-                // Réinitialisez la position de la clé devant le joueur
-                // Vous pouvez définir une position spécifique pour le réapparition de la clé
+                // Rï¿½initialisez la position de la clï¿½ devant le joueur
+                // Vous pouvez dï¿½finir une position spï¿½cifique pour le rï¿½apparition de la clï¿½
                 // Par exemple, utilisez la position du joueur pour le placer devant lui
-                Vector3 dropPosition = FlashLightOnPlayer.transform.position + transform.forward * 2.0f; // À 2 unités devant le joueur
-                this.gameObject.transform.position = dropPosition;
+                    this.gameObject.transform.position = droposition;
                 this.gameObject.SetActive(true);
 
             }
