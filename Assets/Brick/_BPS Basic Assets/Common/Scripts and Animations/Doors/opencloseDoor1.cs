@@ -12,6 +12,7 @@ namespace SojaExiles
 		public bool open;
 		public Transform Player;
 		private GameObject cle;
+		public GameObject OpenNeed;
 
 		void Start()
 		{
@@ -22,10 +23,15 @@ namespace SojaExiles
 			Player = p;
 			cle = Player.Find("key").gameObject;
 		}
+	
 		
 		void OnMouseOver()
 		{
-			{
+			if (Player && !cle.activeSelf)
+            {
+				OpenNeed.SetActive(true);
+            }
+			
 				if (Player && cle.activeSelf)
 				{
 					float dist = Vector3.Distance(Player.position, transform.position);
@@ -52,12 +58,12 @@ namespace SojaExiles
 
 					}
 				}
-
-			}
-
 		}
-
-		IEnumerator opening()
+        private void OnMouseExit()
+        {
+			OpenNeed.SetActive(false);
+		}
+        IEnumerator opening()
 		{
 			print("you are opening the door");
 			openandclose1.Play("Opening 1");
