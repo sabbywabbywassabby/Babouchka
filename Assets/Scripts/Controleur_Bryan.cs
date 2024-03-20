@@ -4,7 +4,7 @@ public class Controleur_Bryan : MonoBehaviour
 {
     public Camera cam;
     private Animator anim_control;
-    private float rotation_speed = 100f;
+    private float rotation_speed = 200f;
     public float sensitivity = -2f;
     private float mouseX, mouseY;
     private PickUp p;
@@ -64,6 +64,8 @@ public class Controleur_Bryan : MonoBehaviour
             Vector3 dropPosition = characterPosition + characterForward * 2f;
             p.Drop(dropPosition);
         }
+
+        
     }
 }
 

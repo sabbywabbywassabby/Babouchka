@@ -14,7 +14,6 @@ public class mode_jeu : MonoBehaviour
     public Text ipText;
     public void GameButton()
     {
-        SceneManager.UnloadSceneAsync("Menu");
         SceneManager.LoadScene(Game_scene);
         Camera.main.gameObject.SetActive(true);
     }
