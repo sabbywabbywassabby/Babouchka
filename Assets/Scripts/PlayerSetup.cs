@@ -17,11 +17,7 @@ public class PlayerSetup : NetworkBehaviour
     private GameObject Plafond;
     private void Start()
     {
-        Plafond = GameObject.Find("Plafond (1)");
         
-        
-        Debug.Log("FindPLafind");
-        Plafond.SetActive(true);
         DoorsParent = GameObject.Find("DoorsParent");
         Key = GameObject.Find("key");
 

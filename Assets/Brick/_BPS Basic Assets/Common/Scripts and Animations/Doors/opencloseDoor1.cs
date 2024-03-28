@@ -13,6 +13,8 @@ namespace SojaExiles
 		public Transform Player;
 		private GameObject cle;
 		public GameObject OpenNeed;
+		public GameObject Click;
+		
 
 		void Start()
 		{
@@ -21,7 +23,7 @@ namespace SojaExiles
 
 		public void SetPlayer(Transform p){
 			Player = p;
-			cle = Player.Find("key").gameObject;
+			cle = Player.transform.Find("key").gameObject;
 		}
 	
 		
@@ -35,12 +37,15 @@ namespace SojaExiles
 				if (Player && cle.activeSelf)
 				{
 					float dist = Vector3.Distance(Player.position, transform.position);
-					if (dist < 15)
+					if (dist < 10)
 					{
+
 						if (open == false)
 						{
+							Click.SetActive(true);
 							if (Input.GetMouseButtonDown(0))
 							{
+								Click.SetActive(false);
 								StartCoroutine(opening());
 							}
 						}
@@ -62,6 +67,7 @@ namespace SojaExiles
         private void OnMouseExit()
         {
 			OpenNeed.SetActive(false);
+			Click.SetActive(false);
 		}
         IEnumerator opening()
 		{
@@ -79,6 +85,7 @@ namespace SojaExiles
 			yield return new WaitForSeconds(.5f);
 		}
 
+        
 
-	}
+    }
 }

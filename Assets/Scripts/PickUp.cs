@@ -7,6 +7,7 @@ public class PickUp : MonoBehaviour
 {
     public GameObject PickUpText;
     public GameObject FlashLightOnPlayer;
+    public GameObject GoldKey;
 
     public void SetKey(GameObject k)
     {
@@ -17,6 +18,7 @@ public class PickUp : MonoBehaviour
     {
         FlashLightOnPlayer.SetActive(false); 
         PickUpText.SetActive(false);
+        GoldKey.SetActive(false);
     }
 
     private void OnTriggerStay(Collider other)
@@ -28,6 +30,7 @@ public class PickUp : MonoBehaviour
             {
                 this.gameObject.SetActive(false);
                 FlashLightOnPlayer.SetActive(true);
+                GoldKey.SetActive(true);
                 PickUpText.SetActive(false);
             }
         }
@@ -40,18 +43,13 @@ public class PickUp : MonoBehaviour
 
     public void Drop(Vector3 droposition)
     {
-   
-            // D�sactivez la cl� attach�e au joueur
+       // Desactivez la cle attachee au joueur
         if (FlashLightOnPlayer != null)
             {
                 FlashLightOnPlayer.SetActive(false);
-
-                // R�initialisez la position de la cl� devant le joueur
-                // Vous pouvez d�finir une position sp�cifique pour le r�apparition de la cl�
-                // Par exemple, utilisez la position du joueur pour le placer devant lui
-                    this.gameObject.transform.position = droposition;
+                GoldKey.SetActive(false);
+                this.gameObject.transform.position = droposition;
                 this.gameObject.SetActive(true);
-
             }
     }
     
