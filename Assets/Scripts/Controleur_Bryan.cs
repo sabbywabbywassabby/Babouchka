@@ -9,7 +9,7 @@ public class Controleur_Bryan : MonoBehaviour
     private float mouseX, mouseY;
     private PickUp p;
     private GameObject Cle;
-    public GameObject GoldKey;
+    private GameObject GoldKey;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,11 +17,13 @@ public class Controleur_Bryan : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cle = GameObject.Find("key");
         p = Cle.GetComponentInChildren<PickUp>();
+        GoldKey = GameObject.Find("Take");
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         // Controler la rotation de la caméra par la souris
         mouseX -= Input.GetAxis("Mouse X") * sensitivity;
         mouseY += Input.GetAxis("Mouse Y") * sensitivity;
@@ -54,6 +56,15 @@ public class Controleur_Bryan : MonoBehaviour
         bool isWalkingBack = verticalInput < -0.1f;
         anim_control.SetBool("is_walking_back", isWalkingBack);
 
+        if (Input.GetKey(KeyCode.E) && GoldKey.activeSelf)
+        {
+            anim_control.SetBool("is_picking", true);
+        }
+        else
+        {
+            anim_control.SetBool("is_picking", false);
+        }
+
         //Faire tomber la cle :
         if (Input.GetKey(KeyCode.Q)) // Si le joueur appuie sur la touche Q
         {
@@ -64,7 +75,6 @@ public class Controleur_Bryan : MonoBehaviour
             // Calculer la position devant le personnage
             Vector3 dropPosition = characterPosition + characterForward * 2f;
             p.Drop(dropPosition);
-            
         }
 
         
