@@ -14,16 +14,19 @@ namespace SojaExiles
 		private GameObject cle;
 		public GameObject OpenNeed;
 		public GameObject Click;
+		private Controleur_Bryan Controle;
 		
 
 		void Start()
 		{
 			open = false;
+			
 		}
 
 		public void SetPlayer(Transform p){
 			Player = p;
 			cle = Player.transform.Find("key").gameObject;
+			Controle = Player.GetComponent<Controleur_Bryan>();
 		}
 	
 		

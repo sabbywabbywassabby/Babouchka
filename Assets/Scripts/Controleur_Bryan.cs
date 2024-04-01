@@ -10,6 +10,9 @@ public class Controleur_Bryan : MonoBehaviour
     private PickUp p;
     private GameObject Cle;
     private GameObject GoldKey;
+    public GameObject Txt;
+    private GameObject Click;
+    public GameObject TxtClick;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +21,12 @@ public class Controleur_Bryan : MonoBehaviour
         Cle = GameObject.Find("key");
         p = Cle.GetComponentInChildren<PickUp>();
         GoldKey = GameObject.Find("Take");
+        Click = GameObject.Find("Click");
+        Txt = GoldKey.transform.Find("E").gameObject;
+        TxtClick = Click.transform.Find("Click").gameObject;
     }
+
+    
 
     // Update is called once per frame
     void Update()
@@ -56,7 +64,8 @@ public class Controleur_Bryan : MonoBehaviour
         bool isWalkingBack = verticalInput < -0.1f;
         anim_control.SetBool("is_walking_back", isWalkingBack);
 
-        if (Input.GetKey(KeyCode.E) && GoldKey.activeSelf)
+        //animation attraper un objet
+        if ((Input.GetKey(KeyCode.E) && Txt.activeSelf) || (Input.GetMouseButtonDown(0) && TxtClick.activeSelf))
         {
             anim_control.SetBool("is_picking", true);
         }
@@ -64,6 +73,7 @@ public class Controleur_Bryan : MonoBehaviour
         {
             anim_control.SetBool("is_picking", false);
         }
+        
 
         //Faire tomber la cle :
         if (Input.GetKey(KeyCode.Q)) // Si le joueur appuie sur la touche Q
