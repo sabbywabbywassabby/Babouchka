@@ -30,8 +30,7 @@ public class Controleur_Bryan : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {       
         // Controler la rotation de la caméra par la souris
         mouseX -= Input.GetAxis("Mouse X") * sensitivity;
         mouseY += Input.GetAxis("Mouse Y") * sensitivity;
@@ -86,8 +85,6 @@ public class Controleur_Bryan : MonoBehaviour
             Vector3 dropPosition = characterPosition + characterForward * 2f;
             p.Drop(dropPosition);
         }
-
-        
     }
 }
 

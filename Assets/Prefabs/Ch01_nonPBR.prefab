@@ -2217,6 +2217,7 @@ GameObject:
   - component: {fileID: 398202478446709128}
   - component: {fileID: -4463049722470228400}
   - component: {fileID: 1966612477926455603}
+  - component: {fileID: -7226757077005278681}
   m_Layer: 0
   m_Name: Ch01_nonPBR
   m_TagString: Player
@@ -2304,6 +2305,8 @@ MonoBehaviour:
   componentsToDisable:
   - {fileID: 1770880635398868012}
   - {fileID: 4875989966778699328}
+  - {fileID: 398202478446709128}
+  - {fileID: 2305757635646399020}
   Flash: {fileID: 3535452727520086281}
 --- !u!114 &4858228895005817100
 MonoBehaviour:
@@ -2353,7 +2356,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 1770880635398868012}
   sensitivity: -2
-  GoldKey: {fileID: 0}
+  Txt: {fileID: 0}
+  TxtClick: {fileID: 0}
 --- !u!54 &-4463049722470228400
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2402,6 +2406,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5188074, y: 1, z: 0.7182616}
   m_Center: {x: -0.04369688, y: 0, z: -0.060420096}
+--- !u!114 &-7226757077005278681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7283186218782267133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  clientAuthority: 1
+  animator: {fileID: 4087279716577580605}
 --- !u!1 &7429387888827085925
 GameObject:
   m_ObjectHideFlags: 0

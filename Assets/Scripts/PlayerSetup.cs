@@ -14,15 +14,18 @@ public class PlayerSetup : NetworkBehaviour
     private GameObject Key;
     public GameObject Flash;
     Camera sceneCamera;
-    private GameObject Plafond;
+    
     private void Start()
     {
         
         DoorsParent = GameObject.Find("DoorsParent");
         Key = GameObject.Find("key");
+        PickUp p = Key.GetComponentInChildren<PickUp>();
+        
 
         if (!isLocalPlayer)
         {
+            p.enabled = false;
             for (int i = 0; i < componentsToDisable.Length; i++)
             {
                 componentsToDisable[i].enabled = false;
@@ -30,13 +33,14 @@ public class PlayerSetup : NetworkBehaviour
         }
         else
         {
+            p.Player = this.gameObject;
             sceneCamera = Camera.main;
             if (sceneCamera != null)
             {
                 sceneCamera.gameObject.SetActive(false);
             }
 
-            PickUp p = Key.GetComponentInChildren<PickUp>();
+            
             p.SetKey(Flash);
            
             foreach(Transform c in DoorsParent.transform)
@@ -50,6 +54,8 @@ public class PlayerSetup : NetworkBehaviour
                 else if(doorComponent2 != null) {
                 doorComponent2.SetPlayer(transform);
                 }
+
+                
             }
         }
     }
