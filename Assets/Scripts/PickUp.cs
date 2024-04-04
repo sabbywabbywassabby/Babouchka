@@ -37,7 +37,7 @@ public class PickUp : NetworkBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 PickUpText.SetActive(false);
-                
+                FlashLightOnPlayer.SetActive(true);
                 GoldKey.SetActive(true);
                 CmdTake();
             }
@@ -67,7 +67,7 @@ public class PickUp : NetworkBehaviour
     private void CmdTake()
     {
         RpcTake();
-        FlashLightOnPlayer.SetActive(true);
+        
     }
 
     // Commande pour drop la cle cote serveur
@@ -83,6 +83,7 @@ public class PickUp : NetworkBehaviour
     private void RpcTake()
     {
         this.gameObject.SetActive(false);
+        PickUpText.SetActive(false);
     }
 
     // Rappel pour activer la cle a terre pour tout les clients
