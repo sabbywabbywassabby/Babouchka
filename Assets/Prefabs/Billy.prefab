@@ -2219,7 +2219,7 @@ GameObject:
   - component: {fileID: 1966612477926455603}
   - component: {fileID: -7226757077005278681}
   m_Layer: 0
-  m_Name: Ch01_nonPBR
+  m_Name: Billy
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,6 +1,7 @@
 using UnityEngine;
+using Mirror;
 
-public class Controleur_Bryan : MonoBehaviour
+public class Controleur_Bryan : NetworkBehaviour
 {
     public Camera cam;
     private Animator anim_control;
@@ -13,6 +14,7 @@ public class Controleur_Bryan : MonoBehaviour
     public GameObject Txt;
     private GameObject Click;
     public GameObject TxtClick;
+    public Camera otherCamera;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,10 +28,38 @@ public class Controleur_Bryan : MonoBehaviour
         TxtClick = Click.transform.Find("Click").gameObject;
     }
 
-    
+    public void Die()
+    {
+        RpcDie();
+        
+    }
 
-    // Update is called once per frame
-    void Update()
+    [ClientRpc]
+    void RpcDie()
+    {
+        anim_control.SetTrigger("is_dying");
+        
+        // Trouver toutes les caméras dans la scène
+        Camera[] cameras = FindObjectsOfType<Camera>();
+
+        // Parcourir toutes les caméras trouvées
+        foreach (Camera camera in cameras)
+        {
+            // Vérifier si la caméra n'est pas la caméra principale
+            if (camera != Camera.main)
+            {
+                // Si une autre caméra est trouvée, la stocker et quitter la boucle
+                otherCamera = camera;
+                break;
+            }
+        }
+        cam.enabled = false; // Désactivez la caméra du personnage mort
+        otherCamera.enabled = true; // Activez la caméra de l'autre joueur
+        gameObject.SetActive(false);
+    }
+
+        // Update is called once per frame
+        void Update()
     {       
         // Controler la rotation de la caméra par la souris
         mouseX -= Input.GetAxis("Mouse X") * sensitivity;
@@ -84,6 +114,11 @@ public class Controleur_Bryan : MonoBehaviour
             // Calculer la position devant le personnage
             Vector3 dropPosition = characterPosition + characterForward * 2f;
             p.Drop(dropPosition);
+        }
+
+        if (Input.GetKey(KeyCode.L))
+        {
+            Die();
         }
     }
 }
