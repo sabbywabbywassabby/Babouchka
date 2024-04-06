@@ -4,63 +4,72 @@ using Mirror;
 public class Controleur_Bryan : NetworkBehaviour
 {
     public Camera cam;
+    public Camera otherCamera;
+    public bool isdead = false;
+    public bool IsDead { get => isdead; }
+
     private Animator anim_control;
     private float rotation_speed = 200f;
-    public float sensitivity = -2f;
+    private float sensitivity = -2f;
     private float mouseX, mouseY;
     private PickUp p;
     private GameObject Cle;
     private GameObject GoldKey;
-    public GameObject Txt;
+    private GameObject TheEnd;
+    private GameObject TheEndTxt;
+    private GameObject Txt;
     private GameObject Click;
-    public GameObject TxtClick;
-    public Camera otherCamera;
+    private GameObject TxtClick;
+    private GameObject Player2;
+    private Controleur_Bryan controle_2;
+       
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("start");
         anim_control = GetComponent<Animator>();
         Cursor.lockState = CursorLockMode.Locked;
         Cle = GameObject.Find("key");
         p = Cle.GetComponentInChildren<PickUp>();
         GoldKey = GameObject.Find("Take");
         Click = GameObject.Find("Click");
+        TheEnd = GameObject.Find("TheEnd");
+        TheEndTxt = TheEnd.transform.Find("Txt").gameObject;
         Txt = GoldKey.transform.Find("E").gameObject;
         TxtClick = Click.transform.Find("Click").gameObject;
+
+        Player2 = GameObject.Find("Player_2");
+        otherCamera = Player2.GetComponentInChildren<Camera>();
+        controle_2 = Player2.GetComponent<Controleur_Bryan>();
     }
 
     public void Die()
     {
         RpcDie();
-        
+        isdead = true;
+    }
+
+    void RpcDie()
+    {
+        anim_control.SetBool("is_dying", true);
+    }
+
+    [Command]
+    public void GameOver()
+    {
+        RpcOver();
     }
 
     [ClientRpc]
-    void RpcDie()
+    public void RpcOver()
     {
-        anim_control.SetTrigger("is_dying");
-        
-        // Trouver toutes les caméras dans la scène
-        Camera[] cameras = FindObjectsOfType<Camera>();
-
-        // Parcourir toutes les caméras trouvées
-        foreach (Camera camera in cameras)
-        {
-            // Vérifier si la caméra n'est pas la caméra principale
-            if (camera != Camera.main)
-            {
-                // Si une autre caméra est trouvée, la stocker et quitter la boucle
-                otherCamera = camera;
-                break;
-            }
-        }
-        cam.enabled = false; // Désactivez la caméra du personnage mort
-        otherCamera.enabled = true; // Activez la caméra de l'autre joueur
-        gameObject.SetActive(false);
+        TheEndTxt.SetActive(true);
     }
 
-        // Update is called once per frame
-        void Update()
-    {       
+    // Update is called once per frame
+    void Update()
+    {
+
         // Controler la rotation de la caméra par la souris
         mouseX -= Input.GetAxis("Mouse X") * sensitivity;
         mouseY += Input.GetAxis("Mouse Y") * sensitivity;
@@ -120,6 +129,21 @@ public class Controleur_Bryan : NetworkBehaviour
         {
             Die();
         }
+        if (isdead)
+        {
+            if (anim_control.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f && !controle_2.IsDead)
+            {
+                cam.enabled = false;
+                otherCamera.enabled = true;
+
+                //gameObject.SetActive(false);
+            }
+            if(anim_control.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f && controle_2.IsDead)
+            {
+                GameOver();
+            }
+        }
+        
     }
 }
 

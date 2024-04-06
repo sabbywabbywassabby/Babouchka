@@ -13,7 +13,10 @@ public class PlayerSetup : NetworkBehaviour
     private GameObject DoorsParent;
     private GameObject Key;
     public GameObject Flash;
+    public Controleur_Bryan script;
     Camera sceneCamera;
+    private GameObject Player_Serveur;
+    private GameObject Player_Client;
     
     private void Start()
     {
@@ -21,10 +24,13 @@ public class PlayerSetup : NetworkBehaviour
         DoorsParent = GameObject.Find("DoorsParent");
         Key = GameObject.Find("key");
         PickUp p = Key.GetComponentInChildren<PickUp>();
+
         
 
         if (!isLocalPlayer)
         {
+            gameObject.name = "Player_2";
+
             p.enabled = false;
             for (int i = 0; i < componentsToDisable.Length; i++)
             {
@@ -33,6 +39,7 @@ public class PlayerSetup : NetworkBehaviour
         }
         else
         {
+            gameObject.name = "Player_1";
             p.Player = this.gameObject;
             sceneCamera = Camera.main;
             if (sceneCamera != null)
@@ -67,5 +74,14 @@ public class PlayerSetup : NetworkBehaviour
             sceneCamera.gameObject.SetActive(true);
         }
     }
-    
+
+    private void Update()
+    {
+        Player_Client = GameObject.Find("Player_1");
+        Player_Serveur = GameObject.Find("Player_2");
+        if (Player_Client != null && Player_Serveur != null && isLocalPlayer)
+        {
+            script.enabled = true;
+        }
+    }
 }

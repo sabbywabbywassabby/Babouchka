@@ -2308,6 +2308,7 @@ MonoBehaviour:
   - {fileID: 398202478446709128}
   - {fileID: 2305757635646399020}
   Flash: {fileID: 3535452727520086281}
+  script: {fileID: 398202478446709128}
 --- !u!114 &4858228895005817100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2349,15 +2350,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7283186218782267133}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df9708702fc344f498015175d83cd4aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   cam: {fileID: 1770880635398868012}
-  sensitivity: -2
-  Txt: {fileID: 0}
-  TxtClick: {fileID: 0}
+  otherCamera: {fileID: 0}
 --- !u!54 &-4463049722470228400
 Rigidbody:
   m_ObjectHideFlags: 0
