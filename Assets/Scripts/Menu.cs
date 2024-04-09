@@ -8,6 +8,7 @@ public class Menu : MonoBehaviour
     public GameObject settingsWindow;
     public GameObject startingWindow;
     public GameObject background;
+    
 
     public void StartButton()
     {
