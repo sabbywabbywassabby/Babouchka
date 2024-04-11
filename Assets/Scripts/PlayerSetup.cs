@@ -14,6 +14,7 @@ public class PlayerSetup : NetworkBehaviour
     private GameObject Key;
     public GameObject Flash;
     public Controleur_Bryan script;
+    public ia_babou script_babou;
     Camera sceneCamera;
     private GameObject Player_Serveur;
     private GameObject Player_Client;
@@ -24,7 +25,7 @@ public class PlayerSetup : NetworkBehaviour
         DoorsParent = GameObject.Find("DoorsParent");
         Key = GameObject.Find("key");
         PickUp p = Key.GetComponentInChildren<PickUp>();
-
+        script_babou = GameObject.Find("Babouchka").GetComponent<ia_babou>();
         
 
         if (!isLocalPlayer)
@@ -81,7 +82,9 @@ public class PlayerSetup : NetworkBehaviour
         Player_Serveur = GameObject.Find("Player_2");
         if (Player_Client != null && Player_Serveur != null && isLocalPlayer)
         {
-            script.enabled = true;
+            
         }
+        script.enabled = true;
+        script_babou.enabled = true;
     }
 }

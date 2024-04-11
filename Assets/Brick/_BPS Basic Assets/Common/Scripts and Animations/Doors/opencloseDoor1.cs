@@ -7,7 +7,7 @@ namespace SojaExiles
     public class opencloseDoor1 : NetworkBehaviour
     {
         public Animator openandclose1;
-        public bool open;
+        private bool open;
         public GameObject OpenNeed;
         public GameObject Click;
 
@@ -15,6 +15,7 @@ namespace SojaExiles
         private Transform player;
         private GameObject key;
         private Controleur_Bryan controleur;
+        public string characterName = "Babouchka";
 
         private void Start()
         {
@@ -27,6 +28,7 @@ namespace SojaExiles
             player = p;
             key = player.transform.Find("key").gameObject;
             controleur = player.GetComponent<Controleur_Bryan>();
+
         }
 
         private void OnMouseOver()
@@ -72,6 +74,28 @@ namespace SojaExiles
         {
             OpenNeed.SetActive(false);
             Click.SetActive(false);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            Debug.Log(other);
+            // Vérifie si le personnage "babouchka" entre en collision avec la porte
+            if (other.gameObject.name == "Babouchka")
+            {
+                
+                // Ouvre la porte
+                CmdOpenDoor();
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            // Vérifie si le personnage "babouchka" sort de la collision avec la porte
+            if (other.gameObject.CompareTag(characterName))
+            {
+                // Ferme la porte
+                CmdCloseDoor();
+            }
         }
 
         // Commande pour ouvrir la porte côté serveur
