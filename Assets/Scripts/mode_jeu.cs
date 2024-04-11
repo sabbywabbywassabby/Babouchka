@@ -22,6 +22,11 @@ public class mode_jeu : MonoBehaviour
         SceneManager.LoadScene("SoloScene");
     }
 
+    public void Quit()
+    {
+        gameObject.SetActive(false);
+    }
+
     public void Ip()
     {
         try
