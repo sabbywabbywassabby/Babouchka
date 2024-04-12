@@ -84,6 +84,8 @@ public class PlayerSetup : NetworkBehaviour
         {
             
         }
+
+        
         script.enabled = true;
         script_babou.enabled = true;
     }
