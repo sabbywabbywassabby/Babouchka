@@ -19,7 +19,7 @@ public class mode_jeu : MonoBehaviour
     }
     public void SoloButton()
     {
-        SceneManager.LoadScene("SoloScene");
+        SceneManager.LoadScene(Game_scene);
     }
 
     public void Quit()
@@ -31,10 +31,10 @@ public class mode_jeu : MonoBehaviour
     {
         try
         {
-            // Obtient toutes les adresses IP de l'hôte local
+            // Obtient toutes les adresses IP de l'hï¿½te local
             IPAddress[] localIPs = Dns.GetHostEntry(Dns.GetHostName()).AddressList;
 
-            // Sélectionne la première adresse IPv4
+            // Sï¿½lectionne la premiï¿½re adresse IPv4
             IPAddress localIPv4 = localIPs.FirstOrDefault(ip => ip.AddressFamily == AddressFamily.InterNetwork);
 
             if (localIPv4 != null)
@@ -43,13 +43,13 @@ public class mode_jeu : MonoBehaviour
             }
             else
             {
-                Console.WriteLine("Aucune adresse IPv4 locale trouvée.");
+                Console.WriteLine("Aucune adresse IPv4 locale trouvï¿½e.");
             }
         }
         catch (Exception)
         {
             // En cas d'erreur, affiche un message d'erreur dans l'objet Text de l'interface utilisateur
-            ipText.text = "Erreur : Impossible de récupérer l'adresse IP locale.";
+            ipText.text = "Erreur : Impossible de rï¿½cupï¿½rer l'adresse IP locale.";
             
         }
         

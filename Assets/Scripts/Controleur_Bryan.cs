@@ -125,6 +125,11 @@ public class Controleur_Bryan : NetworkBehaviour
             p.Drop(dropPosition);
         }
 
+        if(Input.GetKey(KeyCode.M))
+        {
+            anim_control.SetBool("dods", true);
+        }
+
         if (Input.GetKey(KeyCode.L))
         {
             Die();
