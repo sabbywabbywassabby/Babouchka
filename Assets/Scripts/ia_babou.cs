@@ -10,13 +10,13 @@ public class ia_babou : MonoBehaviour
     public List<Transform> destinations;
     public Animator aiAnim;
     public float walkSpeed, chaseSpeed, minIdleTime, maxIdleTime, idleTime, sightDistance, catchDistance, chaseTime, minChaseTime, maxChaseTime, jumpscareTime;
-    public bool walking, chasing;
+    private bool walking, chasing;
     public Transform player;
     Transform currentDest;
     Vector3 dest;
     int randNum;
     public int destinationAmount;
-    public Vector3 rayCastOffset;
+    public Vector3 rayCastOffset; 
     public string deathScene;
 
     void Start()
@@ -28,6 +28,9 @@ public class ia_babou : MonoBehaviour
     }
     void Update()
     {
+        if(player == null){
+            player = GameObject.Find("Player_1").transform;
+        }
         Vector3 direction = (player.position - transform.position).normalized;
         RaycastHit hit;
         if (Physics.Raycast(transform.position + rayCastOffset, direction, out hit, sightDistance))
@@ -52,13 +55,8 @@ public class ia_babou : MonoBehaviour
             float distance = Vector3.Distance(player.position, ai.transform.position);
             if (distance <= catchDistance)
             {
-                player.gameObject.SetActive(false);
-                aiAnim.ResetTrigger("walk");
-                aiAnim.ResetTrigger("idle");
-                aiAnim.ResetTrigger("run");
-                //aiAnim.SetTrigger("jumpscare");
                 StartCoroutine(deathRoutine());
-                chasing = false;
+                
             }
         }
         if (walking == true)
@@ -100,8 +98,21 @@ public class ia_babou : MonoBehaviour
     }
     IEnumerator deathRoutine()
     {
+        
+        aiAnim.ResetTrigger("run");
+        aiAnim.ResetTrigger("walk");
+        aiAnim.SetTrigger("idle");
+        ai.speed = 0;
+        StopCoroutine("stayIdle");
+        StartCoroutine("stayIdle");
+        walking = false;
         yield return new WaitForSeconds(jumpscareTime);
         
-        //SceneManager.LoadScene(deathScene);
+        player.gameObject.SetActive(false);
+        
+        
+                //aiAnim.SetTrigger("jumpscare");
+                
+        chasing = false;
     }
 }

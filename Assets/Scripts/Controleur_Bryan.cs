@@ -7,6 +7,7 @@ public class Controleur_Bryan : NetworkBehaviour
     public Camera otherCamera;
     public bool isdead = false;
     public bool IsDead { get => isdead; }
+    public GameObject menu_pause;
 
     private Animator anim_control;
     private float rotation_speed = 200f;
@@ -41,6 +42,7 @@ public class Controleur_Bryan : NetworkBehaviour
         Player2 = GameObject.Find("Player_2");
         otherCamera = Player2.GetComponentInChildren<Camera>();
         controle_2 = Player2.GetComponent<Controleur_Bryan>();
+        
     }
 
     public void Die()
@@ -69,7 +71,16 @@ public class Controleur_Bryan : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(menu_pause.activeSelf){
+            if(Cursor.lockState != CursorLockMode.None){
+                Cursor.lockState = CursorLockMode.None;
+            }
+            return;
+        }
 
+        if(Cursor.lockState != CursorLockMode.Locked){
+                Cursor.lockState = CursorLockMode.Locked;
+            }
         // Controler la rotation de la caméra par la souris
         mouseX -= Input.GetAxis("Mouse X") * sensitivity;
         mouseY += Input.GetAxis("Mouse Y") * sensitivity;

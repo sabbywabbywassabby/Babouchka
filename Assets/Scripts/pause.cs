@@ -7,7 +7,8 @@ public class pause : MonoBehaviour
 {
     public static bool gameispaused = false;
     public GameObject pausemenuUI;
-    private Controleur_Bryan control;
+    public GameObject settings;
+    public Controleur_Bryan control;
 
 
     void Update()
@@ -28,16 +29,21 @@ public class pause : MonoBehaviour
             }
         }
     }
-    void Paused()
-    {
-        control.enabled = false;
+    public void Paused()
+    {   
         pausemenuUI.SetActive(true);
         gameispaused = true;
     }
 
-    void Resume()
+    public void Settings(){
+        pausemenuUI.SetActive(false);
+        settings.SetActive(true);
+    }
+
+    public void Resume()
     {
-        control.enabled = true;
+        Debug.Log("caca");
+        
         pausemenuUI.SetActive(false);
         gameispaused = false;
     }
