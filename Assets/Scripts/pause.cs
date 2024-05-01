@@ -29,21 +29,22 @@ public class pause : MonoBehaviour
             }
         }
     }
-    public void Paused()
+    void Paused()
     {   
         pausemenuUI.SetActive(true);
         gameispaused = true;
+        // Time.timeScale=0; pour en solo
     }
 
-    public void Settings(){
+    void Settings(){
         pausemenuUI.SetActive(false);
         settings.SetActive(true);
     }
 
-    public void Resume()
+    void Resume()
     {
         Debug.Log("caca");
-        
+        // Time.timeScale=1; pour en solo
         pausemenuUI.SetActive(false);
         gameispaused = false;
     }

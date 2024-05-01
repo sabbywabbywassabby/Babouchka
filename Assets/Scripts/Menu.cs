@@ -8,7 +8,18 @@ public class Menu : MonoBehaviour
     public GameObject settingsWindow;
     public GameObject startingWindow;
     public GameObject background;
-    
+    public GameObject controles;
+
+    public void ControleButton()
+    {
+        controles.SetActive(true);
+    }
+
+    public void CloseControles()
+    {
+        controles.SetActive(false);
+    }
+
 
     public void StartButton()
     {
