@@ -23,6 +23,7 @@ public class Controleur_Bryan : NetworkBehaviour
     private GameObject TxtClick;
     private GameObject Player2;
     private Controleur_Bryan controle_2;
+    public bool stop_moving;
        
     // Start is called before the first frame update
     void Start()
@@ -71,7 +72,7 @@ public class Controleur_Bryan : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(menu_pause.activeSelf){
+        if(menu_pause.activeSelf || stop_moving){
             if(Cursor.lockState != CursorLockMode.None){
                 Cursor.lockState = CursorLockMode.None;
             }

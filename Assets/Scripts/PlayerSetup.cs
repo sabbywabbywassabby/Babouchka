@@ -55,12 +55,17 @@ public class PlayerSetup : NetworkBehaviour
             {
                 opencloseDoor doorComponent1 = c.GetComponentInChildren<opencloseDoor>();
                 opencloseDoor1 doorComponent2 = c.GetComponentInChildren<opencloseDoor1>();
+                KeyPad_Door doorComponent3 = c.GetComponentInChildren<KeyPad_Door>();
 
                 if(doorComponent1 != null) {
                 doorComponent1.SetPlayer(transform);
                 }
                 else if(doorComponent2 != null) {
                 doorComponent2.SetPlayer(transform);
+                }
+                else if (doorComponent3 != null)
+                {
+                    doorComponent3.SetPlayer(transform);
                 }
 
                 
