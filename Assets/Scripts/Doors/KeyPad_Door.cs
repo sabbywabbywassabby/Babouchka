@@ -8,11 +8,12 @@ public class KeyPad_Door : NetworkBehaviour
     public Animator openandclose1;
     private bool open;
     public GameObject Pad;
+    public GameObject Click;
 
     // Références pour la synchronisation
     private Transform player;    
     private Controleur_Bryan controleur;
-    public string characterName = "Babouchka";
+    private string characterName = "Babouchka";
 
     private void Start()
     {
@@ -24,7 +25,6 @@ public class KeyPad_Door : NetworkBehaviour
     {
         player = p;
         controleur = player.GetComponent<Controleur_Bryan>();
-
     }
 
     private void OnMouseOver()
@@ -33,16 +33,22 @@ public class KeyPad_Door : NetworkBehaviour
         if (player)
         {
             float dist = Vector3.Distance(player.position, transform.position);
-            if (dist < 10)
+            if (dist < 5)
             {
                 if (open == false)
-                {                    
+                {
+                    if(Pad.activeSelf == false)
+                    {
+                        Click.SetActive(true);
+                    }
+                    
                     // Si le joueur clique et a l'autorité sur l'objet, ouvrir la porte
                     if (Input.GetMouseButtonDown(0))
                     {
                         Cursor.lockState = CursorLockMode.None;
                         controleur.stop_moving = true;
                         Pad.SetActive(true);
+                        Click.SetActive(false);
                     }
                 }
                 
@@ -50,7 +56,12 @@ public class KeyPad_Door : NetworkBehaviour
         }
     }
 
-    
+    private void OnMouseExit()
+    {
+        Click.SetActive(false);
+    }
+
+
 
     private void OnTriggerEnter(Collider other)
     {       
