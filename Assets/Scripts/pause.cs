@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Mirror;
 
 public class pause : MonoBehaviour
 {
     public static bool gameispaused = false;
     public GameObject pausemenuUI;
     public GameObject settings;
+    public GameObject Controles;
     public Controleur_Bryan control;
 
 
@@ -29,23 +32,48 @@ public class pause : MonoBehaviour
             }
         }
     }
-    void Paused()
-    {   
+    public void Paused()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        control.stop_moving = true;
         pausemenuUI.SetActive(true);
         gameispaused = true;
-        // Time.timeScale=0; pour en solo
     }
 
-    void Settings(){
+    public void MainMenu()
+    {
+        //NetworkManager.singleton.StopClient();
+        SceneManager.LoadScene("Menu");
+    }
+
+    public void Settings(){
         pausemenuUI.SetActive(false);
         settings.SetActive(true);
     }
 
-    void Resume()
+    public void Controle()
     {
-        Debug.Log("caca");
-        // Time.timeScale=1; pour en solo
+        pausemenuUI.SetActive(false);
+        Controles.SetActive(true);
+    }
+
+    public void Back()
+    {
+        settings.SetActive(false);
+        pausemenuUI.SetActive(true);
+    }
+
+    public void backcontrole()
+    {
+        Controles.SetActive(false);
+        settings.SetActive(true);
+    }
+
+    public void Resume()
+    {
         pausemenuUI.SetActive(false);
         gameispaused = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        control.stop_moving = false;
     }
 }

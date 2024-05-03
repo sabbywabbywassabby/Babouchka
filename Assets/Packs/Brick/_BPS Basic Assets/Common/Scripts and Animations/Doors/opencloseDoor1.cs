@@ -80,7 +80,7 @@ namespace SojaExiles
         {
             Debug.Log(other);
             // Vérifie si le personnage "babouchka" entre en collision avec la porte
-            if (other.gameObject.name == "Babouchka")
+            if (other.gameObject.CompareTag(characterName))
             {
                 
                 // Ouvre la porte
@@ -94,7 +94,7 @@ namespace SojaExiles
             if (other.gameObject.CompareTag(characterName))
             {
                 // Ferme la porte
-                CmdCloseDoor();
+                StartCoroutine(DelayedOpen(1.5f));
             }
         }
 
@@ -140,6 +140,14 @@ namespace SojaExiles
             openandclose1.Play("Closing 1");
             open = false;
             yield return new WaitForSeconds(.5f);
+        }
+
+        private bool doorMoving = false;
+
+        private IEnumerator DelayedOpen(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            CmdCloseDoor();
         }
     }
 }
