@@ -128,7 +128,7 @@ namespace SojaExiles
       
         private IEnumerator Opening()
         {
-            print("you are opening the door");
+           
             openandclose1.Play("Opening 1");
             open = true;
             yield return new WaitForSeconds(.5f);
@@ -136,7 +136,7 @@ namespace SojaExiles
         
         private IEnumerator Closing()
         {
-            print("you are closing the door");
+            
             openandclose1.Play("Closing 1");
             open = false;
             yield return new WaitForSeconds(.5f);
