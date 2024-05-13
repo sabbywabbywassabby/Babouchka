@@ -69,6 +69,11 @@ public class Controleur_Bryan : NetworkBehaviour
         TheEndTxt.SetActive(true);
     }
 
+    public void Look(Vector3 direction)
+    {
+        cam.transform.rotation = Quaternion.LookRotation(direction - cam.transform.position);
+    }
+
     // Update is called once per frame
     void Update()
     {

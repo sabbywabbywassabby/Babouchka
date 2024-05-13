@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
+
 public class ia_babou : MonoBehaviour
 {
     public NavMeshAgent ai;
@@ -18,6 +19,7 @@ public class ia_babou : MonoBehaviour
     public int destinationAmount;
     public Vector3 rayCastOffset; 
     public string deathScene;
+    private Controleur_Bryan control_joueur;
 
     void Start()
     {
@@ -30,6 +32,7 @@ public class ia_babou : MonoBehaviour
     {
         if(player == null){
             player = GameObject.Find("Player_1").transform;
+            control_joueur = player.GetComponent<Controleur_Bryan>();
         }
         Vector3 direction = (player.position - transform.position).normalized;
         RaycastHit hit;
@@ -98,21 +101,22 @@ public class ia_babou : MonoBehaviour
     }
     IEnumerator deathRoutine()
     {
+        control_joueur.stop_moving = true;
+        control_joueur.Look(transform.position + Vector3.up);
         
         aiAnim.ResetTrigger("run");
         aiAnim.ResetTrigger("walk");
         aiAnim.SetTrigger("idle");
         ai.speed = 0;
         StopCoroutine("stayIdle");
-        StartCoroutine("stayIdle");
         walking = false;
+        transform.rotation = Quaternion.LookRotation(player.transform.position - transform.position);
+        aiAnim.SetTrigger("punch");
         yield return new WaitForSeconds(jumpscareTime);
-        
+        aiAnim.ResetTrigger("punch");
+        aiAnim.SetTrigger("idle");
+        StartCoroutine("stayIdle");
         player.gameObject.SetActive(false);
-        
-        
-                //aiAnim.SetTrigger("jumpscare");
-                
         chasing = false;
     }
 }
