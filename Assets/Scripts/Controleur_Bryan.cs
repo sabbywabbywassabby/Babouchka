@@ -9,7 +9,7 @@ public class Controleur_Bryan : NetworkBehaviour
     public bool IsDead { get => isdead; }
     public GameObject menu_pause;
 
-    private Animator anim_control;
+    public Animator anim_control;
     private float rotation_speed = 200f;
     private float sensitivity = -2f;
     private float mouseX, mouseY;

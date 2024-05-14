@@ -104,6 +104,7 @@ public class ia_babou : MonoBehaviour
         control_joueur.stop_moving = true;
         control_joueur.Look(transform.position + Vector3.up);
         
+        
         aiAnim.ResetTrigger("run");
         aiAnim.ResetTrigger("walk");
         aiAnim.SetTrigger("idle");
@@ -113,6 +114,8 @@ public class ia_babou : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(player.transform.position - transform.position);
         aiAnim.SetTrigger("punch");
         yield return new WaitForSeconds(jumpscareTime);
+        control_joueur.anim_control.SetBool("punch",true);
+        yield return new WaitForSeconds(2f);
         aiAnim.ResetTrigger("punch");
         aiAnim.SetTrigger("idle");
         StartCoroutine("stayIdle");
