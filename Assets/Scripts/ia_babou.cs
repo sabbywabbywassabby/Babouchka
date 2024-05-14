@@ -11,6 +11,7 @@ public class ia_babou : MonoBehaviour
     public List<Transform> destinations;
     public Animator aiAnim;
     public float walkSpeed, chaseSpeed, minIdleTime, maxIdleTime, idleTime, sightDistance, catchDistance, chaseTime, minChaseTime, maxChaseTime, jumpscareTime;
+    public GameObject Blood;
     private bool walking, chasing;
     public Transform player;
     Transform currentDest;
@@ -49,6 +50,7 @@ public class ia_babou : MonoBehaviour
         }
         if (chasing == true)
         {
+            StopCoroutine(stayIdle());
             dest = player.position;
             ai.destination = dest;
             ai.speed = chaseSpeed;
@@ -114,8 +116,11 @@ public class ia_babou : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(player.transform.position - transform.position);
         aiAnim.SetTrigger("punch");
         yield return new WaitForSeconds(jumpscareTime);
+        
         control_joueur.anim_control.SetBool("punch",true);
         yield return new WaitForSeconds(2f);
+        Blood.SetActive(true);
+        control_joueur.anim_control.SetBool("dead", true);
         aiAnim.ResetTrigger("punch");
         aiAnim.SetTrigger("idle");
         StartCoroutine("stayIdle");
