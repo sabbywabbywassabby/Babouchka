@@ -3,17 +3,27 @@ using Mirror;
 
 public class Controleur_Bryan : NetworkBehaviour
 {
+    
     public Camera cam;
     public Camera otherCamera;
     public bool isdead = false;
     public bool IsDead { get => isdead; }
     public GameObject menu_pause;
-
     public Animator anim_control;
+    public GameObject blue_onplayer;
+    public GameObject black_on_player;
+    public GameObject red_on_player;
+    public GameObject green_on_player;
+    public GameObject gold_on_player;
+
     private float rotation_speed = 200f;
     private float sensitivity = -2f;
     private float mouseX, mouseY;
     private PickUp p;
+    private PickUp p_bleu;
+    private PickUp p_green;
+    private PickUp p_black;
+    private PickUp p_red;
     private GameObject Cle;
     private GameObject GoldKey;
     private GameObject TheEnd;
@@ -33,6 +43,10 @@ public class Controleur_Bryan : NetworkBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cle = GameObject.Find("key");
         p = Cle.GetComponentInChildren<PickUp>();
+        p_black = GameObject.Find("black_key").GetComponentInChildren<PickUp>();
+        p_bleu = GameObject.Find("blue_key").GetComponentInChildren<PickUp>();
+        p_green = GameObject.Find("green_key").GetComponentInChildren<PickUp>();
+        p_red = GameObject.Find("red_key").GetComponentInChildren<PickUp>();
         GoldKey = GameObject.Find("Take");
         Click = GameObject.Find("Click");
         TheEnd = GameObject.Find("TheEnd");
@@ -128,10 +142,10 @@ public class Controleur_Bryan : NetworkBehaviour
         {
             anim_control.SetBool("is_picking", false);
         }
-        
+
 
         //Faire tomber la cle :
-        if (Input.GetKey(KeyCode.Q)) // Si le joueur appuie sur la touche Q
+        if (Input.GetKey(KeyCode.Q) ) // Si le joueur appuie sur la touche Q
         {
             // Récupérer la position du personnage
             Vector3 characterPosition = transform.position;
@@ -139,10 +153,20 @@ public class Controleur_Bryan : NetworkBehaviour
             Vector3 characterForward = transform.forward;
             // Calculer la position devant le personnage
             Vector3 dropPosition = characterPosition + characterForward * 2f;
-            p.Drop(dropPosition);
+
+            if (gold_on_player.activeSelf)
+                p.Drop(dropPosition);
+            if (blue_onplayer.activeSelf)
+                p_bleu.Drop(dropPosition);
+            if (red_on_player.activeSelf)
+                p_red.Drop(dropPosition);
+            if (green_on_player.activeSelf)
+                p_green.Drop(dropPosition);
+            if (black_on_player.activeSelf)
+                p_black.Drop(dropPosition);
         }
 
-        if(Input.GetKey(KeyCode.M))
+        if (Input.GetKey(KeyCode.M))
         {
             anim_control.SetBool("dods", true);
         }

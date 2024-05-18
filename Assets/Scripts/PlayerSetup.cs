@@ -9,10 +9,21 @@ public class PlayerSetup : NetworkBehaviour
 {
     [SerializeField]
     private Behaviour[] componentsToDisable;
+    
 
     private GameObject DoorsParent;
-    private GameObject Key;
+    private GameObject gold_key;
+    private GameObject blue_key;
+    private GameObject red_key;
+    private GameObject black_key;
+    private GameObject green_key;
+
     public GameObject Flash;
+    public GameObject blue;
+    public GameObject black;
+    public GameObject red;
+    public GameObject green;
+
     public Controleur_Bryan script;
     public ia_babou script_babou;
     Camera sceneCamera;
@@ -23,8 +34,19 @@ public class PlayerSetup : NetworkBehaviour
     {
         
         DoorsParent = GameObject.Find("DoorsParent");
-        Key = GameObject.Find("key");
-        PickUp p = Key.GetComponentInChildren<PickUp>();
+        gold_key = GameObject.Find("key");
+        blue_key = GameObject.Find("blue_key");
+        red_key = GameObject.Find("red_key");
+        black_key = GameObject.Find("black_key");
+        green_key = GameObject.Find("green_key");
+
+       
+        PickUp p = gold_key.GetComponentInChildren<PickUp>();
+        PickUp p1 = black_key.GetComponent<PickUp>();
+        PickUp p2 = blue_key.GetComponent<PickUp>();
+        PickUp p3 = red_key.GetComponent<PickUp>();
+        PickUp p4 = green_key.GetComponent<PickUp>();
+
         script_babou = GameObject.Find("Babouchka").GetComponent<ia_babou>();
         
 
@@ -40,8 +62,14 @@ public class PlayerSetup : NetworkBehaviour
         }
         else
         {
+
             gameObject.name = "Player_1";
             p.Player = this.gameObject;
+            p1.Player = this.gameObject;
+            p2.Player = this.gameObject;
+            p3.Player = this.gameObject;
+            p4.Player = this.gameObject;
+
             sceneCamera = Camera.main;
             if (sceneCamera != null)
             {
@@ -50,7 +78,12 @@ public class PlayerSetup : NetworkBehaviour
 
             
             p.SetKey(Flash);
+            p1.SetKey(black);
+            p2.SetKey(blue);
+            p3.SetKey(red);
+            p4.SetKey(green);
            
+            //initialiser la variable du joueur dans les differentes portes
             foreach(Transform c in DoorsParent.transform)
             {
                 opencloseDoor doorComponent1 = c.GetComponentInChildren<opencloseDoor>();

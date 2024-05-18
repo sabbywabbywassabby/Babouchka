@@ -37,6 +37,7 @@ public class PickUp : NetworkBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 PickUpText.SetActive(false);
+                
                 FlashLightOnPlayer.SetActive(true);
                 GoldKey.SetActive(true);
                 CmdTake();
@@ -95,11 +96,7 @@ public class PickUp : NetworkBehaviour
         this.gameObject.SetActive(true);
         
     }
-  
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
     
+
 }
