@@ -28,18 +28,18 @@ public class PickUp : NetworkBehaviour
     //souris sur l'objet cle
     private void OnTriggerStay(Collider other)
     {
-        // Vérifier si l'objet avec lequel nous entrons en collision est le joueur local
+        // Vï¿½rifier si l'objet avec lequel nous entrons en collision est le joueur local
         if (other.gameObject == Player)
-        {
-            
+        {           
             // Cet objet est un joueur local
             PickUpText.SetActive(true);
             if (Input.GetKey(KeyCode.E))
             {
                 PickUpText.SetActive(false);
-                
-                FlashLightOnPlayer.SetActive(true);
+                Controleur_Bryan Control = Player.GetComponent<Controleur_Bryan>();
+                Control.Drop();
                 GoldKey.SetActive(true);
+                FlashLightOnPlayer.SetActive(true);
                 CmdTake();
             }
         }
@@ -63,7 +63,7 @@ public class PickUp : NetworkBehaviour
         
     }
 
-    // Commande pour prendre la cle côté serveur
+    // Commande pour prendre la cle cï¿½tï¿½ serveur
     [Command(requiresAuthority = false)]
     private void CmdTake()
     {
@@ -94,7 +94,6 @@ public class PickUp : NetworkBehaviour
         // Desactivez la cle attachee au joueur
         this.gameObject.transform.position = droposition;
         this.gameObject.SetActive(true);
-        
     }
 
     

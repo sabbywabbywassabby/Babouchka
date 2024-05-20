@@ -34,10 +34,12 @@ public class Controleur_Bryan : NetworkBehaviour
     private GameObject Player2;
     private Controleur_Bryan controle_2;
     public bool stop_moving;
+    public bool Q;
        
     // Start is called before the first frame update
     void Start()
     {
+        Q = false;
         Debug.Log("start");
         anim_control = GetComponent<Animator>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -88,6 +90,29 @@ public class Controleur_Bryan : NetworkBehaviour
         cam.transform.rotation = Quaternion.LookRotation(direction - cam.transform.position);
     }
 
+    public void Drop()
+    {
+        // Récupérer la position du personnage
+        Vector3 characterPosition = transform.position;
+        // Récupérer la direction dans laquelle le personnage regarde
+        Vector3 characterForward = transform.forward;
+        // Calculer la position devant le personnage
+        Vector3 dropPosition = characterPosition + characterForward * 2f;
+
+        if (gold_on_player.activeSelf)
+            p.Drop(dropPosition);
+        if (blue_onplayer.activeSelf)
+            p_bleu.Drop(dropPosition);
+        if (red_on_player.activeSelf)
+            p_red.Drop(dropPosition);
+        if (green_on_player.activeSelf)
+            p_green.Drop(dropPosition);
+        if (black_on_player.activeSelf)
+            p_black.Drop(dropPosition);
+        print("bryan");
+        Q = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -134,36 +159,14 @@ public class Controleur_Bryan : NetworkBehaviour
         anim_control.SetBool("is_walking_back", isWalkingBack);
 
         //animation attraper un objet
-        if ((Input.GetKey(KeyCode.E) && Txt.activeSelf) || (Input.GetMouseButtonDown(0) && TxtClick.activeSelf))
-        {
-            anim_control.SetBool("is_picking", true);
-        }
-        else
-        {
-            anim_control.SetBool("is_picking", false);
-        }
+        //if ((Input.GetKey(KeyCode.E) && Txt.activeSelf) || (Input.GetMouseButtonDown(0) && TxtClick.activeSelf))
+        //{ anim_control.SetBool("is_picking", true); }
 
 
         //Faire tomber la cle :
-        if (Input.GetKey(KeyCode.Q) ) // Si le joueur appuie sur la touche Q
+        if (Input.GetKey(KeyCode.Q)) // Si le joueur appuie sur la touche Q
         {
-            // Récupérer la position du personnage
-            Vector3 characterPosition = transform.position;
-            // Récupérer la direction dans laquelle le personnage regarde
-            Vector3 characterForward = transform.forward;
-            // Calculer la position devant le personnage
-            Vector3 dropPosition = characterPosition + characterForward * 2f;
-
-            if (gold_on_player.activeSelf)
-                p.Drop(dropPosition);
-            if (blue_onplayer.activeSelf)
-                p_bleu.Drop(dropPosition);
-            if (red_on_player.activeSelf)
-                p_red.Drop(dropPosition);
-            if (green_on_player.activeSelf)
-                p_green.Drop(dropPosition);
-            if (black_on_player.activeSelf)
-                p_black.Drop(dropPosition);
+            Drop();
         }
 
         if (Input.GetKey(KeyCode.M))

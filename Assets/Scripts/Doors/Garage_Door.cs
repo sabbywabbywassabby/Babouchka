@@ -10,7 +10,7 @@ public class Garage_Door : NetworkBehaviour
     public GameObject OpenNeed;
     public GameObject Click;
 
-    // Références pour la synchronisation
+    // Rï¿½fï¿½rences pour la synchronisation
     public Transform player;
     private GameObject key;
     
@@ -20,7 +20,7 @@ public class Garage_Door : NetworkBehaviour
         open = false;
     }
 
-    // Fonction pour définir le joueur qui interagit avec la porte
+    // Fonction pour dï¿½finir le joueur qui interagit avec la porte
     public void SetPlayer(Transform p)
     {
         player = p;
@@ -33,22 +33,22 @@ public class Garage_Door : NetworkBehaviour
         {
             if (!open)
             {
-
                 float dist = Vector3.Distance(player.position, transform.position);
                 if (dist < 5)
                 {
-                    Click.SetActive(true);
+                    if(key.activeSelf){
+                        Click.SetActive(true);
+                    }
+                    else{
+                        OpenNeed.SetActive(true);
+                    }
                     if (Input.GetMouseButtonDown(0))
                     {
-                        
+                           
                         if (key.activeSelf)
                         {
                             Click.SetActive(false);
                             CmdOpenDoor();
-                        }
-                        else
-                        { 
-                            OpenNeed.SetActive(true);
                         }
                     }
                 }
@@ -62,7 +62,7 @@ public class Garage_Door : NetworkBehaviour
         Click.SetActive(false);
     }
 
-    // Commande pour ouvrir la porte côté serveur
+    // Commande pour ouvrir la porte cï¿½tï¿½ serveur
     [Command(requiresAuthority = false)]
     private void CmdOpenDoor()
     {
