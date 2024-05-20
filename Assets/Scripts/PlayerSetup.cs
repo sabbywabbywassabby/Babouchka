@@ -105,6 +105,10 @@ public class PlayerSetup : NetworkBehaviour
                 {
                     doorComponent4.SetPlayer(transform);
                 }
+                else
+                {
+                    c.GetComponentInChildren<door_blue>().SetPlayer(transform);
+                }
 
                 
             }
