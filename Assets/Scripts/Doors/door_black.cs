@@ -17,9 +17,17 @@ namespace SojaExiles
         private Controleur_Bryan controleur;
         private string characterName = "Babouchka";
 
+        // Audio sons stars
+        public AudioClip openingSound;
+        public AudioClip closingSound;
+        private AudioSource audioSource;
+        // hihi
+
         private void Start()
         {
             open = false;
+            audioSource = GetComponent<AudioSource>(); // hihi
+
         }
 
         // Fonction pour définir le joueur qui interagit avec la porte
@@ -103,6 +111,8 @@ namespace SojaExiles
         private void CmdOpenDoor()
         {
             RpcPlayOpenAnimation();
+            audioSource.PlayOneShot(openingSound); // Play openin SFX
+
         }
 
         // Commande pour fermer la porte côté serveur
@@ -110,6 +120,8 @@ namespace SojaExiles
         private void CmdCloseDoor()
         {
             RpcPlayCloseAnimation();
+            audioSource.PlayOneShot(closingSound); // Play closing SFX
+
         }
 
         // Rappel pour jouer l'animation d'ouverture de la porte sur tous les clients
