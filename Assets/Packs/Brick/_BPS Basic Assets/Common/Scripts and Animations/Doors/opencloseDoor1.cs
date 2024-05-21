@@ -142,7 +142,7 @@ namespace SojaExiles
             yield return new WaitForSeconds(.5f);
         }
 
-        private bool doorMoving = false;
+        
 
         private IEnumerator DelayedOpen(float delay)
         {

@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace SojaExiles
 {
-    public class door_blue : NetworkBehaviour
+    public class door_green : NetworkBehaviour
     {
         public Animator openandclose1;
         private bool open;
@@ -26,7 +26,7 @@ namespace SojaExiles
         public void SetPlayer(Transform p)
         {
             player = p;
-            key = player.transform.Find("blue_key").gameObject;
+            key = player.transform.Find("green_key").gameObject;
             controleur = player.GetComponent<Controleur_Bryan>();
 
         }

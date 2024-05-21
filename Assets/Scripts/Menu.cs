@@ -9,6 +9,7 @@ public class Menu : MonoBehaviour
     public GameObject startingWindow;
     public GameObject background;
     public GameObject controles;
+    public GameObject audio_click;
 
     public void ControleButton()
     {
