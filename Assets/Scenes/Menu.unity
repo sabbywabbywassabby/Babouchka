@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -156,7 +156,7 @@ RectTransform:
   m_Father: {fileID: 427062542}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1353,7 +1353,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: RESOLUTION
+  m_text: FULLSCREEN
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b51a0ff67b075d2498e73ab5be5ac1db, type: 2}
   m_sharedMaterial: {fileID: -186677119182522242, guid: b51a0ff67b075d2498e73ab5be5ac1db, type: 2}
@@ -2006,6 +2006,7 @@ MonoBehaviour:
   background: {fileID: 491569470}
   controles: {fileID: 1982040790}
   audio_click: {fileID: 0}
+  audioMixer: {fileID: 24100000, guid: 1cc4291132b75d3478c2ba2b0798b8e2, type: 2}
 --- !u!114 &491569473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2671,7 +2672,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -193, y: -18.371185}
+  m_AnchoredPosition: {x: 121, y: 50.139}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &629266107
@@ -2718,13 +2719,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 95222047}
   m_HandleRect: {fileID: 892407612}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -80
+  m_MaxValue: 0
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 491569472}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: SetVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &645931249
 GameObject:
   m_ObjectHideFlags: 0
@@ -3663,8 +3676,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 533973581}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4914,7 +4927,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -130, y: -132.37119}
+  m_AnchoredPosition: {x: 121, y: -46.373}
   m_SizeDelta: {x: 160, y: 27.5104}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1334492671
@@ -4963,7 +4976,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 491569472}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: SetFullScreen
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &1408022002
 GameObject:
@@ -5816,7 +5841,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -192, y: 21}
+  m_AnchoredPosition: {x: -116.67, y: 50.139}
   m_SizeDelta: {x: 186.67, y: 38.2775}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1575087644
@@ -6836,7 +6861,7 @@ GameObject:
   - component: {fileID: 1856412045}
   - component: {fileID: 1856412044}
   m_Layer: 5
-  m_Name: RESOLUTION
+  m_Name: FULLSCREEN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6859,7 +6884,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -191, y: -71.371185}
+  m_AnchoredPosition: {x: -116.66, y: -37}
   m_SizeDelta: {x: 186.6702, y: 46.2557}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1856412044
@@ -6992,7 +7017,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 160, y: -14}
+  m_AnchoredPosition: {x: 0.015015, y: -126}
   m_SizeDelta: {x: 186.67, y: 42.7838}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1893426781
@@ -7651,7 +7676,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2103539455
 RectTransform:
   m_ObjectHideFlags: 0

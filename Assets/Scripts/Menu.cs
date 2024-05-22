@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 
 public class Menu : MonoBehaviour
@@ -10,6 +11,20 @@ public class Menu : MonoBehaviour
     public GameObject background;
     public GameObject controles;
     public GameObject audio_click;
+    public AudioMixer audioMixer;
+
+    public void SetVolume(float volume)
+    {
+        audioMixer.SetFloat("volume", volume);
+    }
+
+    public void SetFullScreen(bool isFullScreen)
+    {
+        Screen.fullScreen = isFullScreen;
+    }
+
+
+
 
     public void ControleButton()
     {
