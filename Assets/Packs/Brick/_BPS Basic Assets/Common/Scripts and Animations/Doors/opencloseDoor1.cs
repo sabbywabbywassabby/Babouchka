@@ -15,18 +15,27 @@ namespace SojaExiles
         private Transform player;
         private GameObject key;
         private Controleur_Bryan controleur;
-        public string characterName = "Babouchka";
+        private string characterName = "Babouchka";
+        public string key_name;
 
         private void Start()
         {
             open = false;
         }
 
+        private void Update()
+        {
+            if(player == null)
+            {
+                player = GameObject.Find("Player_1").transform;
+                SetPlayer(player);
+            }
+        }
         // Fonction pour définir le joueur qui interagit avec la porte
         public void SetPlayer(Transform p)
         {
             player = p;
-            key = player.transform.Find("key").gameObject;
+            key = player.transform.Find(key_name).gameObject;
             controleur = player.GetComponent<Controleur_Bryan>();
 
         }
