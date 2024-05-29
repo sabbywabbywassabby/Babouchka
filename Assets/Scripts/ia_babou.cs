@@ -32,8 +32,13 @@ public class ia_babou : MonoBehaviour
     void Update()
     {
         if(player == null){
-            player = GameObject.Find("Player_1").transform;
-            control_joueur = player.GetComponent<Controleur_Bryan>();
+            if(GameObject.Find("Player_1") != null){
+                player = GameObject.Find("Player_1").transform;
+                control_joueur = player.GetComponent<Controleur_Bryan>();
+            }
+            else{
+                return;
+            }
         }
         Vector3 direction = (player.position - transform.position).normalized;
         RaycastHit hit;

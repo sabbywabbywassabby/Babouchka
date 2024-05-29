@@ -77,11 +77,7 @@ public class PlayerSetup : NetworkBehaviour
             }
 
             
-            p.SetKey(Flash);
-            p1.SetKey(black);
-            p2.SetKey(blue);
-            p3.SetKey(red);
-            p4.SetKey(green);
+            
            
             //initialiser la variable du joueur dans les differentes portes
             foreach(Transform c in DoorsParent.transform)

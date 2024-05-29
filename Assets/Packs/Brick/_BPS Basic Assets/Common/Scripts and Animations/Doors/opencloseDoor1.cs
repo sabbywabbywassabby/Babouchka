@@ -13,10 +13,10 @@ namespace SojaExiles
 
         // Références pour la synchronisation
         private Transform player;
-        private GameObject key;
+        public GameObject key_inventaire;
         private Controleur_Bryan controleur;
         private string characterName = "Babouchka";
-        public string key_name;
+        
 
         private void Start()
         {
@@ -35,21 +35,19 @@ namespace SojaExiles
         public void SetPlayer(Transform p)
         {
             player = p;
-            key = player.transform.Find(key_name).gameObject;
             controleur = player.GetComponent<Controleur_Bryan>();
-
         }
 
         private void OnMouseOver()
         {
             // Vérifier si le joueur est proche et a la clé active
-            if (player && !key.activeSelf)
+            if (player && !key_inventaire.activeSelf)
             {
                 OpenNeed.SetActive(true);
             }
 
             // Vérifier si le joueur est proche et a la clé active
-            if (player && key.activeSelf)
+            if (player && key_inventaire.activeSelf)
             {
                 float dist = Vector3.Distance(player.position, transform.position);
                 if (dist < 10)

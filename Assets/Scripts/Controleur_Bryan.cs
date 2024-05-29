@@ -32,6 +32,7 @@ public class Controleur_Bryan : NetworkBehaviour
     private GameObject Click;
     private GameObject TxtClick;
     private GameObject Player2;
+    public PickUp key_on_player;
     private Controleur_Bryan controle_2;
     public bool stop_moving;
     public bool Q;
@@ -99,18 +100,11 @@ public class Controleur_Bryan : NetworkBehaviour
         // Calculer la position devant le personnage
         Vector3 dropPosition = characterPosition + characterForward * 2f;
 
-        if (gold_on_player.activeSelf)
-            p.Drop(dropPosition);
-        if (blue_onplayer.activeSelf)
-            p_bleu.Drop(dropPosition);
-        if (red_on_player.activeSelf)
-            p_red.Drop(dropPosition);
-        if (green_on_player.activeSelf)
-            p_green.Drop(dropPosition);
-        if (black_on_player.activeSelf)
-            p_black.Drop(dropPosition);
-        print("bryan");
-        Q = false;
+        if(key_on_player != null){
+            key_on_player.Drop(dropPosition);
+        }
+        
+        
     }
 
     // Update is called once per frame

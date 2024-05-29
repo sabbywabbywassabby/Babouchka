@@ -7,18 +7,14 @@ using Mirror;
 public class PickUp : NetworkBehaviour
 {
     public GameObject PickUpText;
-    public GameObject FlashLightOnPlayer;
+    //public GameObject FlashLightOnPlayer;
     public GameObject GoldKey;
     public GameObject Player;
 
-    public void SetKey(GameObject k)
-    {
-        FlashLightOnPlayer = k;
-    }
+    
     // Start is called before the first frame update
     void Start()
     {
-        FlashLightOnPlayer.SetActive(false); 
         PickUpText.SetActive(false);
         GoldKey.SetActive(false);
     }
@@ -39,7 +35,7 @@ public class PickUp : NetworkBehaviour
                 Controleur_Bryan Control = Player.GetComponent<Controleur_Bryan>();
                 Control.Drop();
                 GoldKey.SetActive(true);
-                FlashLightOnPlayer.SetActive(true);
+                Control.key_on_player = this.GetComponent<PickUp>();
                 CmdTake();
             }
         }
@@ -54,9 +50,8 @@ public class PickUp : NetworkBehaviour
     //fonction pour drop la cle
     public void Drop(Vector3 dropposition)
     {
-        if (FlashLightOnPlayer.activeSelf)
+        if (GoldKey.activeSelf)
         {
-            FlashLightOnPlayer.SetActive(false);
             GoldKey.SetActive(false);
             CmdDrop(dropposition);
         }
