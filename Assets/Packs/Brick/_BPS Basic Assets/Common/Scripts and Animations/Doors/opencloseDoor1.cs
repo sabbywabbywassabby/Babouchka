@@ -25,7 +25,7 @@ namespace SojaExiles
 
         private void Update()
         {
-            if(player == null)
+            if(GameObject.Find("Player_1") != null)
             {
                 player = GameObject.Find("Player_1").transform;
                 SetPlayer(player);

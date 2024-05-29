@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using SojaExiles;
+using UnityEngine.UI;
 
 public class PlayerSetup : NetworkBehaviour
 {
@@ -29,10 +30,15 @@ public class PlayerSetup : NetworkBehaviour
     Camera sceneCamera;
     private GameObject Player_Serveur;
     private GameObject Player_Client;
-    
+    private Image canva_noir;
+    private GameObject waiting;
+    private bool coroutineStarted = false;
+
     private void Start()
     {
-        
+        waiting = GameObject.Find("Waiting");
+        canva_noir = GameObject.Find("Noir").GetComponent<Image>();
+        canva_noir.enabled = false;
         DoorsParent = GameObject.Find("DoorsParent");
         gold_key = GameObject.Find("key");
         blue_key = GameObject.Find("blue_key");
@@ -86,10 +92,7 @@ public class PlayerSetup : NetworkBehaviour
                 opencloseDoor1 doorComponent2 = c.GetComponentInChildren<opencloseDoor1>();
                 KeyPad_Door doorComponent3 = c.GetComponentInChildren<KeyPad_Door>();
                 Garage_Door doorComponent4 = c.GetComponentInChildren<Garage_Door>();
-                door_blue doorComponent5 = c.GetComponentInChildren<door_blue>();
-                door_black doorComponent6 = c.GetComponentInChildren<door_black>();
-                door_green doorComponent7 = c.GetComponentInChildren<door_green>();
-                door_red doorComponent8 = c.GetComponentInChildren<door_red>();
+                
 
                 if (doorComponent1 != null) {
                 doorComponent1.SetPlayer(transform);
@@ -104,19 +107,7 @@ public class PlayerSetup : NetworkBehaviour
                 else if (doorComponent4 != null)
                 {
                     doorComponent4.SetPlayer(transform);
-                }
-                else if (doorComponent5 != null){
-                    doorComponent5.SetPlayer(transform);
-                }
-                else if (doorComponent6 != null) {
-                    doorComponent6.SetPlayer(transform);
-                }
-                else if (doorComponent7 != null) {
-                    doorComponent7.SetPlayer(transform);
-                }
-                else if (doorComponent8 != null) {
-                    doorComponent8.SetPlayer(transform);
-                }                
+                }               
             }
         }
     }
@@ -129,17 +120,39 @@ public class PlayerSetup : NetworkBehaviour
         }
     }
 
+    IEnumerator Starter()
+    {
+        waiting.SetActive(false);
+        canva_noir.enabled = true;
+        yield return new WaitForSeconds(2f);
+        script.enabled = true;
+        script_babou.enabled = true;
+        StartCoroutine(FadeOut());
+    }
+
+    IEnumerator FadeOut()
+    {
+        Color originalColor = canva_noir.color;
+        float fadeDuration = 5f; // Durée du fondu en secondes (ajustez cette valeur pour un fondu plus lent)
+        for (float t = 0.0f; t < fadeDuration; t += Time.deltaTime)
+        {
+            float alpha = Mathf.Lerp(1.0f, 0.0f, t / fadeDuration);
+            canva_noir.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+            yield return null;
+        }
+        canva_noir.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0.0f);
+        canva_noir.gameObject.SetActive(false); // Désactive l'image une fois le fondu terminé
+    }
+
     private void Update()
     {
         Player_Client = GameObject.Find("Player_1");
         Player_Serveur = GameObject.Find("Player_2");
-        if (Player_Client != null && Player_Serveur != null && isLocalPlayer)
+        //&& Player_Serveur != null && isLocalPlayer
+        if (!coroutineStarted && Player_Client != null)
         {
-            
+            coroutineStarted = true;
+            StartCoroutine(Starter());
         }
-
-        
-        script.enabled = true;
-        script_babou.enabled = true;
     }
 }
