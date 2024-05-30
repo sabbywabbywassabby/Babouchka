@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioBackground : MonoBehaviour
+namespace Audio.Scrpits
 {
-    public AudioSource backgroundAudio;
-    // Start is called before the first frame update
-    void Start()
+    public class AudioBackground : MonoBehaviour
     {
-        backgroundAudio.Play();   
+        public AudioSource backgroundAudio;
+
+        void Start()
+        {
+            backgroundAudio.Play();   
+        }
     }
 }

@@ -1,68 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FootStepsScripts : MonoBehaviour
+namespace Audio.Scrpits
 {
-    public GameObject footstep;
-
-    // Start is called before the first frame update
-    void Start()
+    public class FootStepsScripts : MonoBehaviour
     {
-        footstep.SetActive(false);
-    }
+        public GameObject footstep;
 
-    // Update is called once per frame
-    void Update()
-    {
-       if(Input.GetKey(KeyCode.UpArrow))
+        void Start()
         {
-            footsteps();
+            footstep.SetActive(false);
         }
 
-        if(Input.GetKeyDown(KeyCode.DownArrow))
+        void Update()
         {
-            footsteps();
+            if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                footstep.SetActive(true);
+            }
+
+            else if(Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
+            {
+                footstep.SetActive(false);
+
+            }
         }
-
-        if(Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            footsteps();
-        }
-
-        if(Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            footsteps();
-        }
-
-        if(Input.GetKeyUp(KeyCode.UpArrow))
-        {
-            StopFootsteps();
-        }
-
-        if(Input.GetKeyUp(KeyCode.DownArrow))
-        {
-            StopFootsteps();
-        }
-
-        if(Input.GetKeyUp(KeyCode.LeftArrow))
-        {
-            StopFootsteps();
-        }
-
-        if(Input.GetKeyUp(KeyCode.RightArrow))
-        {
-            StopFootsteps();
-        }
-    }
-
-    void footsteps()
-    {
-        footstep.SetActive(true);
-    }
-
-    void StopFootsteps()
-    {
-        footstep.SetActive(false);
     }
 }

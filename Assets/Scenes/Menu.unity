@@ -67,9 +67,6 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_FinalGather: 0
-    m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
     m_BakeBackend: 1
@@ -2523,6 +2520,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 887205480}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &609507300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3478,6 +3487,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 887205480}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &847330657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3542,8 +3563,8 @@ AudioSource:
   m_GameObject: {fileID: 887205479}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 048871b807aab9944b3fdd25b3d31a41, type: 3}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 1cc4291132b75d3478c2ba2b0798b8e2, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 8d09733e4af9a334e8383e447f49839d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.65
   m_Pitch: 1
@@ -6302,7 +6323,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Play()
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1608285730
@@ -6930,19 +6951,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1856412045}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 887205480}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1856412045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7067,6 +7076,18 @@ MonoBehaviour:
       - m_Target: {fileID: 491569472}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
         m_MethodName: ControleButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 887205480}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7689,12 +7710,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 629266106}
+  - {fileID: 1856412043}
   - {fileID: 1334492670}
   - {fileID: 847330655}
+  - {fileID: 629266106}
   - {fileID: 1575087643}
   - {fileID: 1893426780}
-  - {fileID: 1856412043}
   - {fileID: 1199330884}
   m_Father: {fileID: 491569471}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
