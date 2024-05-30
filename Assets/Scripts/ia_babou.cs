@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Video;
 using UnityEngine.SceneManagement;
 
 
@@ -11,16 +12,19 @@ public class ia_babou : MonoBehaviour
     public List<Transform> destinations;
     public Animator aiAnim;
     public float walkSpeed, chaseSpeed, minIdleTime, maxIdleTime, idleTime, sightDistance, catchDistance, chaseTime, minChaseTime, maxChaseTime, jumpscareTime;
-    public GameObject Blood;
+    public VideoPlayer videoPlayer;
+    public GameObject videoRenderer;
     private bool walking, chasing;
     public Transform player;
     Transform currentDest;
     Vector3 dest;
+    public GameObject spawn_pose;
     int randNum;
     public int destinationAmount;
     public Vector3 rayCastOffset; 
     public string deathScene;
     private Controleur_Bryan control_joueur;
+    private PlayerSetup playerSetup;
 
     void Start()
     {
@@ -31,10 +35,11 @@ public class ia_babou : MonoBehaviour
     }
     void Update()
     {
-        if(player == null){
+        if(control_joueur == null){
             if(GameObject.Find("Player_1") != null){
                 player = GameObject.Find("Player_1").transform;
                 control_joueur = player.GetComponent<Controleur_Bryan>();
+                playerSetup = player.GetComponent<PlayerSetup>();
             }
             else{
                 return;
@@ -65,8 +70,8 @@ public class ia_babou : MonoBehaviour
             float distance = Vector3.Distance(player.position, ai.transform.position);
             if (distance <= catchDistance)
             {
+                StopAllCoroutines();
                 StartCoroutine(deathRoutine());
-                
             }
         }
         if (walking == true)
@@ -109,9 +114,8 @@ public class ia_babou : MonoBehaviour
     IEnumerator deathRoutine()
     {
         control_joueur.stop_moving = true;
-        control_joueur.Look(transform.position + Vector3.up);
-        
-        
+        chasing = false;
+
         aiAnim.ResetTrigger("run");
         aiAnim.ResetTrigger("walk");
         aiAnim.SetTrigger("idle");
@@ -119,17 +123,37 @@ public class ia_babou : MonoBehaviour
         StopCoroutine("stayIdle");
         walking = false;
         transform.rotation = Quaternion.LookRotation(player.transform.position - transform.position);
-        aiAnim.SetTrigger("punch");
-        yield return new WaitForSeconds(jumpscareTime);
-        
-        control_joueur.anim_control.SetBool("punch",true);
+        //aiAnim.SetTrigger("punch");
+
+        // Activer la vidéo et la lancer
+        videoPlayer.gameObject.SetActive(true);
+        videoRenderer.SetActive(true);
+        videoPlayer.Play();
+
+        // Attendre la fin de la vidéo
         yield return new WaitForSeconds(2f);
-        Blood.SetActive(true);
-        control_joueur.anim_control.SetBool("dead", true);
+        print("fin");
+        // Désactiver la vidéo après la fin
+        videoRenderer.SetActive(false);
+        videoPlayer.Stop();
+        
+        videoPlayer.gameObject.SetActive(false);
+        
+
+
+
+        //control_joueur.anim_control.SetBool("dead", true);
         aiAnim.ResetTrigger("punch");
         aiAnim.SetTrigger("idle");
+        
+        //player.gameObject.SetActive(false);
+        
         StartCoroutine("stayIdle");
-        player.gameObject.SetActive(false);
-        chasing = false;
+
+        
+        //player.gameObject.SetActive(true);
+        player.transform.position = spawn_pose.gameObject.transform.position;
+        playerSetup.StartCoroutine("Starter");
+        control_joueur.stop_moving = false;
     }
 }

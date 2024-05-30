@@ -120,7 +120,7 @@ public class PlayerSetup : NetworkBehaviour
         }
     }
 
-    IEnumerator Starter()
+    public IEnumerator Starter()
     {
         waiting.SetActive(false);
         canva_noir.enabled = true;
@@ -133,7 +133,7 @@ public class PlayerSetup : NetworkBehaviour
     IEnumerator FadeOut()
     {
         Color originalColor = canva_noir.color;
-        float fadeDuration = 5f; // Durée du fondu en secondes (ajustez cette valeur pour un fondu plus lent)
+        float fadeDuration = 5f; // Durée du fondu en secondes
         for (float t = 0.0f; t < fadeDuration; t += Time.deltaTime)
         {
             float alpha = Mathf.Lerp(1.0f, 0.0f, t / fadeDuration);
