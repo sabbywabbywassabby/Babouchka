@@ -124,16 +124,21 @@ public class ia_babou : MonoBehaviour
         walking = false;
         transform.rotation = Quaternion.LookRotation(player.transform.position - transform.position);
         //aiAnim.SetTrigger("punch");
-
-        // Activer la vidéo et la lancer
+        
+        // le joueur jette l'objet si il en a un.
+        if(control_joueur.key_on_player != null){
+            control_joueur.Drop();
+        }
+        
+        // Activer la vidï¿½o et la lancer
         videoPlayer.gameObject.SetActive(true);
         videoRenderer.SetActive(true);
         videoPlayer.Play();
 
-        // Attendre la fin de la vidéo
+        // Attendre la fin de la vidï¿½o
         yield return new WaitForSeconds(2f);
         print("fin");
-        // Désactiver la vidéo après la fin
+        // Dï¿½sactiver la vidï¿½o aprï¿½s la fin
         videoRenderer.SetActive(false);
         videoPlayer.Stop();
         
