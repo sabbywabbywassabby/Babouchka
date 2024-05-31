@@ -1,44 +1,45 @@
 using UnityEngine;
 
-namespace Audio.Scrpits
+namespace Audio.Scripts
 {
-  public class DoorSoundEffects : MonoBehaviour
-  {
-    public AudioClip openingSound;
-    public AudioClip closingSound;
-    private bool isOpen;
-    private AudioSource audioSource;
-
-    void Start()
+    public class DoorSoundEffects : MonoBehaviour
     {
-      isOpen = false;
-      audioSource = GetComponent<AudioSource>();
-    }
+        public AudioClip openingSound;
+        public AudioClip closingSound;
+        private bool open;
+        private AudioSource audioSource;
 
-    void OnTriggerEnter(Collider other)
-    {
-      if (other.gameObject.CompareTag("Player"))
-      {
-        if (!isOpen)
+        void Start()
         {
-          audioSource.clip = openingSound;
-          audioSource.Play();
-          isOpen = true;
+            open = false;
+            audioSource = GetComponent<AudioSource>();
         }
-      }
-    }
 
-    void OnTriggerExit(Collider other)
-    {
-      if (other.gameObject.CompareTag("Player"))
-      {
-        if (isOpen)
+        void OnTriggerEnter(Collider other)
         {
-          audioSource.clip = closingSound;
-          audioSource.Play();
-          isOpen = false;
+            if (other.gameObject.CompareTag("Player"))
+            {
+                if (!open && audioSource != null)
+                {
+                    audioSource.clip = openingSound;
+                    audioSource.Play();
+                    open = true;
+                }
+            }
         }
-      }
+
+        void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                if (open && audioSource != null)
+                {
+                    audioSource.Stop();
+                    audioSource.clip = closingSound;
+                    audioSource.Play();
+                    open = false;
+                }
+            }
+        }
     }
-  }
 }
