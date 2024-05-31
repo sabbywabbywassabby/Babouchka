@@ -143,7 +143,7 @@ namespace SojaExiles
         private IEnumerator Opening()
         {
             // joue le son
-            if (!open && audioSource != null)
+            if (audioSource != null)
             {
                 audioSource.Stop();
                 audioSource.clip = openingSound;
@@ -156,15 +156,15 @@ namespace SojaExiles
         
         private IEnumerator Closing()
         {
+            openandclose1.Play("Closing 1");
+            open = false;
             // joue le son
-            if (open && audioSource != null)
+            if (audioSource != null)
             {
                 audioSource.Stop();
                 audioSource.clip = closingSound;
                 audioSource.Play();
             }
-            openandclose1.Play("Closing 1");
-            open = false;
             yield return new WaitForSeconds(.5f);
         }
 
