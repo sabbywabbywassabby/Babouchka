@@ -18,6 +18,7 @@ public class PlayerSetup : NetworkBehaviour
     private GameObject red_key;
     private GameObject black_key;
     private GameObject green_key;
+    private GameObject petrol_can;
 
     public GameObject Flash;
     public GameObject blue;
@@ -45,6 +46,8 @@ public class PlayerSetup : NetworkBehaviour
         red_key = GameObject.Find("red_key");
         black_key = GameObject.Find("black_key");
         green_key = GameObject.Find("green_key");
+        petrol_can = GameObject.Find("Petrol");
+
 
        
         PickUp p = gold_key.GetComponentInChildren<PickUp>();
@@ -52,6 +55,7 @@ public class PlayerSetup : NetworkBehaviour
         PickUp p2 = blue_key.GetComponent<PickUp>();
         PickUp p3 = red_key.GetComponent<PickUp>();
         PickUp p4 = green_key.GetComponent<PickUp>();
+        PickUp p5 = petrol_can.GetComponent<PickUp>();
 
         script_babou = GameObject.Find("Babouchka").GetComponent<ia_babou>();
         
@@ -75,6 +79,7 @@ public class PlayerSetup : NetworkBehaviour
             p2.Player = this.gameObject;
             p3.Player = this.gameObject;
             p4.Player = this.gameObject;
+            p5.Player = gameObject;
 
             sceneCamera = Camera.main;
             if (sceneCamera != null)

@@ -57,7 +57,7 @@ namespace SojaExiles
             if (player && key_inventaire.activeSelf)
             {
                 float dist = Vector3.Distance(player.position, transform.position);
-                if (dist < 10)
+                if (dist < 4)
                 {
                     if (open == false)
                     {
