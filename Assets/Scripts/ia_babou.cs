@@ -130,19 +130,11 @@ public class ia_babou : MonoBehaviour
             control_joueur.Drop();
         }
         
-        // Activer la vid�o et la lancer
-        videoPlayer.gameObject.SetActive(true);
-        videoRenderer.SetActive(true);
-        videoPlayer.Play();
+        
 
         // Attendre la fin de la vid�o
         yield return new WaitForSeconds(2f);
         print("fin");
-        // D�sactiver la vid�o apr�s la fin
-        videoRenderer.SetActive(false);
-        videoPlayer.Stop();
-        
-        videoPlayer.gameObject.SetActive(false);
         
 
 

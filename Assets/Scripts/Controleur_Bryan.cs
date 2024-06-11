@@ -35,13 +35,15 @@ public class Controleur_Bryan : NetworkBehaviour
     public PickUp key_on_player;
     private Controleur_Bryan controle_2;
     public bool stop_moving;
-    public bool Q;
+    public bool only_cam;
+    
        
     // Start is called before the first frame update
     void Start()
     {
-        Q = false;
-        Debug.Log("start");
+        stop_moving = false;
+        only_cam = false;
+        
         anim_control = GetComponent<Animator>();
         Cursor.lockState = CursorLockMode.Locked;
         Cle = GameObject.Find("key");
@@ -127,6 +129,11 @@ public class Controleur_Bryan : NetworkBehaviour
 
         // Appliquer la rotation de la caméra
         cam.transform.rotation = Quaternion.Euler(mouseY, mouseX, 0);
+
+        if (only_cam) //limiter les mouvements seulement au regard
+        {
+            return;
+        }
 
         // Controler le personnage
         float horizontalInput = Input.GetAxis("Horizontal");

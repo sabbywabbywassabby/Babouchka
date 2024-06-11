@@ -12,7 +12,7 @@ public class Garage_Door : NetworkBehaviour
 
     // R�f�rences pour la synchronisation
     public Transform player;
-    private GameObject key;
+    public GameObject key_in_inventaire;
     
 
     private void Start()
@@ -24,7 +24,7 @@ public class Garage_Door : NetworkBehaviour
     public void SetPlayer(Transform p)
     {
         player = p;
-        key = player.transform.Find("garage_key").gameObject;
+        
     }
 
     private void OnMouseOver()
@@ -36,7 +36,7 @@ public class Garage_Door : NetworkBehaviour
                 float dist = Vector3.Distance(player.position, transform.position);
                 if (dist < 5)
                 {
-                    if(key.activeSelf){
+                    if(key_in_inventaire.activeSelf){
                         Click.SetActive(true);
                     }
                     else{
@@ -45,7 +45,7 @@ public class Garage_Door : NetworkBehaviour
                     if (Input.GetMouseButtonDown(0))
                     {
                            
-                        if (key.activeSelf)
+                        if (key_in_inventaire.activeSelf)
                         {
                             Click.SetActive(false);
                             CmdOpenDoor();
