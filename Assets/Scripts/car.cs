@@ -20,6 +20,10 @@ public class car :NetworkBehaviour
     public Camera conducteur;
     public Camera passager;
     public Animator car_anim;
+    [SyncVar]
+    private NetworkIdentity driver;
+    [SyncVar]
+    private NetworkIdentity passenger;
 
     // Start is called before the first frame update
     void Start()
@@ -65,8 +69,7 @@ public class car :NetworkBehaviour
                     Need_Petrol.SetActive(false);
                     Click.SetActive(false);
                     petrol_inventaire.SetActive(false);
-                    print("fin_petrol");
-                    print(petrol_in);
+                    
                 }
             }
             else
@@ -77,14 +80,14 @@ public class car :NetworkBehaviour
         }
         else
         {
-            if (!info)
+            if (key_inventaire.activeSelf)
             {
                 print("info");
                 Click.SetActive(true);
                 if (Input.GetMouseButtonDown(0))
                 {
                     print("enter");
-                    Enter();
+                    CmdEnterCar();
                 }
             }
             else
@@ -102,19 +105,48 @@ public class car :NetworkBehaviour
         Need_Key_Car.SetActive(false);
     }
 
-    private void Enter()
+    [Command(requiresAuthority = false)]
+    private void CmdEnterCar()
     {
-        controleur.cam.enabled = false;
-        if (isServer)
+        if (driver == null)
         {
+            driver = player.GetComponent<NetworkIdentity>();
+            RpcSetDriver(driver);
+        }
+        else if (passenger == null)
+        {
+            passenger = player.GetComponent<NetworkIdentity>();
+            RpcSetPassenger(passenger);
+        }
+        if (driver != null && passenger != null)
+        {
+            RpcStartCar();
+        }
+    }
+
+    [ClientRpc]
+    private void RpcSetDriver(NetworkIdentity newDriver)
+    {
+        driver = newDriver;
+        if (driver.isLocalPlayer)
+        {
+            controleur.cam.enabled = false;
             conducteur.enabled = true;
         }
-        else
+    }
+    [ClientRpc]
+    private void RpcSetPassenger(NetworkIdentity newPassenger)
+    {
+        passenger = newPassenger;
+        if (passenger.isLocalPlayer)
         {
+            controleur.cam.enabled = false;
             passager.enabled = true;
         }
-
+    }
+    [ClientRpc]
+    private void RpcStartCar()
+    {
         car_anim.SetBool("Moving", true);
-        
     }
 }
