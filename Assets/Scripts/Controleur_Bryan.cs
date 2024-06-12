@@ -100,7 +100,7 @@ public class Controleur_Bryan : NetworkBehaviour
         // Récupérer la direction dans laquelle le personnage regarde
         Vector3 characterForward = transform.forward;
         // Calculer la position devant le personnage
-        Vector3 dropPosition = characterPosition + characterForward * 2f;
+        Vector3 dropPosition = characterPosition + characterForward + new Vector3(0,0.5f,0);
 
         if(key_on_player != null){
             key_on_player.Drop(dropPosition);

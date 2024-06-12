@@ -419,7 +419,7 @@ MonoBehaviour:
   pausemenuUI: {fileID: 6448919008523361197}
   settings: {fileID: 3065130945759761467}
   Controles: {fileID: 0}
-  control: {fileID: 0}
+  control: {fileID: 398202478446709128}
 --- !u!1 &639279104814468101
 GameObject:
   m_ObjectHideFlags: 0
@@ -5048,6 +5048,7 @@ GameObject:
   - component: {fileID: -4463049722470228400}
   - component: {fileID: 1966612477926455603}
   - component: {fileID: -7226757077005278681}
+  - component: {fileID: 7596379599444937832}
   m_Layer: 0
   m_Name: Billy
   m_TagString: Player
@@ -5085,7 +5086,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4087279716577580605
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5099,6 +5100,7 @@ Animator:
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 1
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -5142,6 +5144,7 @@ MonoBehaviour:
   - {fileID: 4875989966778699328}
   - {fileID: 398202478446709128}
   - {fileID: 2305757635646399020}
+  - {fileID: 8099906640204216318}
   Flash: {fileID: 3535452727520086281}
   blue: {fileID: 5743867218028255641}
   black: {fileID: 6549581468979921342}
@@ -5149,7 +5152,6 @@ MonoBehaviour:
   green: {fileID: 2808242505100368464}
   script: {fileID: 398202478446709128}
   script_babou: {fileID: 0}
-  canva_noir: {fileID: 0}
 --- !u!114 &4858228895005817100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5211,7 +5213,7 @@ MonoBehaviour:
   gold_on_player: {fileID: 3535452727520086281}
   key_on_player: {fileID: 0}
   stop_moving: 0
-  Q: 0
+  only_cam: 0
 --- !u!54 &-4463049722470228400
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5277,6 +5279,21 @@ MonoBehaviour:
   syncInterval: 0
   clientAuthority: 1
   animator: {fileID: 4087279716577580605}
+--- !u!114 &7596379599444937832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7283186218782267133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbe4b9d746a7677438f9624bd558e065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!1 &7393534559858193990
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ namespace SojaExiles
     public class opencloseDoor1 : NetworkBehaviour
     {
         public Animator openandclose1;
+        [SyncVar]
         private bool open;
         public GameObject OpenNeed;
         public GameObject Click;
@@ -47,6 +48,10 @@ namespace SojaExiles
 
         private void OnMouseOver()
         {
+            float dist = Vector3.Distance(player.position, transform.position);
+            if (dist > 4)
+                return;
+
             // Vérifier si le joueur est proche et a la clé active
             if (player && !key_inventaire.activeSelf)
             {
@@ -56,9 +61,8 @@ namespace SojaExiles
             // Vérifier si le joueur est proche et a la clé active
             if (player && key_inventaire.activeSelf)
             {
-                float dist = Vector3.Distance(player.position, transform.position);
-                if (dist < 4)
-                {
+                
+                
                     if (open == false)
                     {
                         Click.SetActive(true);
@@ -80,7 +84,7 @@ namespace SojaExiles
                             }
                         }
                     }
-                }
+                
             }
         }
 
@@ -92,11 +96,9 @@ namespace SojaExiles
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log(other);
             // Vérifie si le personnage "babouchka" entre en collision avec la porte
             if (other.gameObject.CompareTag(characterName))
-            {
-                
+            {               
                 // Ouvre la porte
                 CmdOpenDoor();
             }

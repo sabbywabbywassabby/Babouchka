@@ -58,13 +58,14 @@ public class PlayerSetup : NetworkBehaviour
         PickUp p5 = petrol_can.GetComponent<PickUp>();
 
         script_babou = GameObject.Find("Babouchka").GetComponent<ia_babou>();
-        
+
+        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
 
         if (!isLocalPlayer)
         {
             gameObject.name = "Player_2";
 
-            p.enabled = false;
+            
             for (int i = 0; i < componentsToDisable.Length; i++)
             {
                 componentsToDisable[i].enabled = false;
@@ -72,7 +73,6 @@ public class PlayerSetup : NetworkBehaviour
         }
         else
         {
-
             gameObject.name = "Player_1";
             p.Player = this.gameObject;
             p1.Player = this.gameObject;
@@ -80,6 +80,8 @@ public class PlayerSetup : NetworkBehaviour
             p3.Player = this.gameObject;
             p4.Player = this.gameObject;
             p5.Player = gameObject;
+
+            gameObject.GetComponent<Respawn>().enabled = false;
 
             sceneCamera = Camera.main;
             if (sceneCamera != null)
@@ -130,8 +132,17 @@ public class PlayerSetup : NetworkBehaviour
         waiting.SetActive(false);
         canva_noir.enabled = true;
         yield return new WaitForSeconds(2f);
-        script.enabled = true;
-        script_babou.enabled = true;
+        if (isLocalPlayer)
+        {
+            script.enabled = true;
+        }
+        
+        if (isServer)
+        {
+            script_babou.enabled = true;
+        }
+        
+        
         StartCoroutine(FadeOut());
     }
 
@@ -154,7 +165,7 @@ public class PlayerSetup : NetworkBehaviour
         Player_Client = GameObject.Find("Player_1");
         Player_Serveur = GameObject.Find("Player_2");
         //&& Player_Serveur != null && isLocalPlayer
-        if (!coroutineStarted && Player_Client != null)
+        if (!coroutineStarted && Player_Client != null && Player_Serveur != null)
         {
             coroutineStarted = true;
             StartCoroutine(Starter());

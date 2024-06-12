@@ -7,6 +7,7 @@ public class car :NetworkBehaviour
 {
     private Transform player;
     private Controleur_Bryan controleur;
+    [SyncVar]
     public bool petrol_in;
     public bool info;
     private bool conducteur_in;
@@ -80,7 +81,7 @@ public class car :NetworkBehaviour
         }
         else
         {
-            if (key_inventaire.activeSelf)
+            if (!key_inventaire.activeSelf)
             {
                 print("info");
                 Click.SetActive(true);

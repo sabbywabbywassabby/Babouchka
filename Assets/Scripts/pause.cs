@@ -16,10 +16,7 @@ public class pause : MonoBehaviour
 
     void Update()
     {
-        if(control == null)
-        {
-            control = GameObject.Find("Player_1").GetComponent<Controleur_Bryan>();
-        }
+        
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             if(gameispaused)
@@ -65,8 +62,9 @@ public class pause : MonoBehaviour
 
     public void backcontrole()
     {
-        Controles.SetActive(false);
+        
         settings.SetActive(true);
+        Controles.SetActive(false);
     }
 
     public void Resume()
