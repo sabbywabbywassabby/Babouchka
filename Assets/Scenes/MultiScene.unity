@@ -4589,7 +4589,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dresser Closet_01
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5483040691484923751, guid: 7769b6e68c1a90a458fec4955db6b2fd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -16292,8 +16293,8 @@ Transform:
   m_GameObject: {fileID: 601490249}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.8451, y: -4.2, z: -36.47}
-  m_LocalScale: {x: 23.426083, y: 5, z: 0.5}
+  m_LocalPosition: {x: -1.0028, y: -4.2, z: -36.47}
+  m_LocalScale: {x: 25.110418, y: 5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 928839274}
@@ -76776,6 +76777,7 @@ GameObject:
   - component: {fileID: 123293272}
   - component: {fileID: 123293273}
   - component: {fileID: 7062192254047256149}
+  - component: {fileID: 7062192254047256150}
   m_Layer: 0
   m_Name: Oven_Door
   m_TagString: Untagged
@@ -77566,6 +77568,24 @@ MonoBehaviour:
   key_inventaire: {fileID: 2077367272}
   openingSound: {fileID: 8300000, guid: a768a558315b55a4186e4242a4f613ce, type: 3}
   closingSound: {fileID: 8300000, guid: 3e6409d6510885e40b94f0a4843d7488, type: 3}
+--- !u!114 &7062192254047256150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6748149662080643477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clientStarted: 0
+  sceneId: 666776125
+  _assetId: 0
+  serverOnly: 0
+  visible: 0
+  hasSpawned: 0
 --- !u!1 &7074142585699246427
 GameObject:
   m_ObjectHideFlags: 0
@@ -79830,6 +79850,7 @@ GameObject:
   - component: {fileID: 1582149187}
   - component: {fileID: 1582149184}
   - component: {fileID: 8103463392003046082}
+  - component: {fileID: 8103463392003046083}
   m_Layer: 0
   m_Name: Broiler_Door
   m_TagString: Untagged
@@ -79858,6 +79879,24 @@ MonoBehaviour:
   key_inventaire: {fileID: 2077367272}
   openingSound: {fileID: 8300000, guid: a768a558315b55a4186e4242a4f613ce, type: 3}
   closingSound: {fileID: 8300000, guid: 3e6409d6510885e40b94f0a4843d7488, type: 3}
+--- !u!114 &8103463392003046083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8103463392003046081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clientStarted: 0
+  sceneId: 3036554749
+  _assetId: 0
+  serverOnly: 0
+  visible: 0
+  hasSpawned: 0
 --- !u!23 &8105658572798885100
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -79912,6 +79951,7 @@ GameObject:
   - component: {fileID: 3019758979893242717}
   - component: {fileID: 8206757368434342379}
   - component: {fileID: 8206757368434342380}
+  - component: {fileID: 8206757368434342381}
   m_Layer: 0
   m_Name: Drawer_Script
   m_TagString: Untagged
@@ -80223,6 +80263,24 @@ MonoBehaviour:
   key_inventaire: {fileID: 2077367272}
   openingSound: {fileID: 8300000, guid: a768a558315b55a4186e4242a4f613ce, type: 3}
   closingSound: {fileID: 8300000, guid: 3e6409d6510885e40b94f0a4843d7488, type: 3}
+--- !u!114 &8206757368434342381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8108280843817175900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clientStarted: 0
+  sceneId: 3062446222
+  _assetId: 0
+  serverOnly: 0
+  visible: 0
+  hasSpawned: 0
 --- !u!23 &8236259438691332406
 MeshRenderer:
   m_ObjectHideFlags: 0
