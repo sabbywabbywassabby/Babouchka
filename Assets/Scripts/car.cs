@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
-public class car :NetworkBehaviour
+
+public class car : NetworkBehaviour
 {
     private Transform player;
     private Controleur_Bryan controleur;
+
     [SyncVar]
     public bool petrol_in;
-    public bool info;
-    private bool conducteur_in;
+    [SyncVar]
+    public bool conducteur_in;
+    [SyncVar]
+    public bool win;
+
+
 
     public GameObject Need_Petrol;
     public GameObject Need_Key_Car;
@@ -18,18 +24,20 @@ public class car :NetworkBehaviour
     public GameObject Click;
     public GameObject key_inventaire;
     public GameObject petrol_inventaire;
-    public Camera conducteur;
-    public Camera passager;
+    public GameObject conducteur;
+    public GameObject passager;
+    public GameObject win_canva;
+    
+    
     public Animator car_anim;
-    [SyncVar]
-    private NetworkIdentity driver;
-    [SyncVar]
-    private NetworkIdentity passenger;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         petrol_in = false;
+        conducteur_in = false;
+        win = false;
     }
 
     // Update is called once per frame
@@ -40,7 +48,15 @@ public class car :NetworkBehaviour
             player = GameObject.Find("Player_1").transform;
             SetPlayer(player);
         }
-        info = key_inventaire.activeSelf;
+        if(player != null)
+        {
+            controleur.cam2 = conducteur;
+        }
+        if (win)
+        {
+            win_canva.SetActive(true);
+        }
+
     }
 
     public void SetPlayer(Transform p)
@@ -81,20 +97,25 @@ public class car :NetworkBehaviour
         }
         else
         {
-            if (!key_inventaire.activeSelf)
+            if (true)
             {
-                print("info");
+                
                 Click.SetActive(true);
                 if (Input.GetMouseButtonDown(0))
                 {
-                    print("enter");
-                    CmdEnterCar();
+                    Click.SetActive(false);
+                    if (conducteur_in)
+                        passager.SetActive(true);
+                    else
+                    {
+                        conducteur.SetActive(true);
+                        conducteur_in = true;
+                    }
+                        
                 }
+                
             }
-            else
-            {
-                Need_Key_Car.SetActive(true);
-            }
+            
         }
     }
 
@@ -106,47 +127,10 @@ public class car :NetworkBehaviour
         Need_Key_Car.SetActive(false);
     }
 
-    [Command(requiresAuthority = false)]
-    private void CmdEnterCar()
-    {
-        if (driver == null)
-        {
-            driver = player.GetComponent<NetworkIdentity>();
-            RpcSetDriver(driver);
-        }
-        else if (passenger == null)
-        {
-            passenger = player.GetComponent<NetworkIdentity>();
-            RpcSetPassenger(passenger);
-        }
-        if (driver != null && passenger != null)
-        {
-            RpcStartCar();
-        }
-    }
-
-    [ClientRpc]
-    private void RpcSetDriver(NetworkIdentity newDriver)
-    {
-        driver = newDriver;
-        if (driver.isLocalPlayer)
-        {
-            controleur.cam.enabled = false;
-            conducteur.enabled = true;
-        }
-    }
-    [ClientRpc]
-    private void RpcSetPassenger(NetworkIdentity newPassenger)
-    {
-        passenger = newPassenger;
-        if (passenger.isLocalPlayer)
-        {
-            controleur.cam.enabled = false;
-            passager.enabled = true;
-        }
-    }
-    [ClientRpc]
-    private void RpcStartCar()
+    
+    
+    
+    private void StartCar()
     {
         car_anim.SetBool("Moving", true);
     }

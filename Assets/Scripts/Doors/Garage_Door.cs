@@ -6,7 +6,7 @@ using Mirror;
 public class Garage_Door : NetworkBehaviour
 {
     public Animator Open_Garage;
-    private bool open;
+    public bool open;
     public GameObject OpenNeed;
     public GameObject Click;
 
@@ -49,6 +49,7 @@ public class Garage_Door : NetworkBehaviour
                         {
                             Click.SetActive(false);
                             CmdOpenDoor();
+                            open = true;
                         }
                     }
                 }

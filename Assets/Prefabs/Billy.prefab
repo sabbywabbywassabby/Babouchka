@@ -5202,6 +5202,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   cam: {fileID: 1770880635398868012}
+  cam2: {fileID: 0}
   otherCamera: {fileID: 0}
   isdead: 0
   menu_pause: {fileID: 6448919008523361197}
@@ -5260,8 +5261,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5188074, y: 1, z: 0.7182616}
-  m_Center: {x: -0.04369688, y: 0, z: -0.060420096}
+  m_Size: {x: 0.7710376, y: 2.1838965, z: 0.97986984}
+  m_Center: {x: -0.06056857, y: 0.5919483, z: -0.055418015}
 --- !u!114 &-7226757077005278681
 MonoBehaviour:
   m_ObjectHideFlags: 0

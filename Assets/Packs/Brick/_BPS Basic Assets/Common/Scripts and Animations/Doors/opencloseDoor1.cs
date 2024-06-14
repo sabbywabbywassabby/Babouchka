@@ -61,24 +61,21 @@ namespace SojaExiles
             // Vérifier si le joueur est proche et a la clé active
             if (player && key_inventaire.activeSelf)
             {
-                
-                
-                    if (open == false)
+                Click.SetActive(true);
+
+                if (open == false)// Si le joueur clique et a l'autorité sur l'objet, ouvrir la porte
+                {
+                    if (Input.GetMouseButtonDown(0))
                     {
-                        Click.SetActive(true);
-                        // Si le joueur clique et a l'autorité sur l'objet, ouvrir la porte
-                        if (Input.GetMouseButtonDown(0))
-                        {
-                            Click.SetActive(false);
-                            CmdOpenDoor();
-                        }
+                        Click.SetActive(false);
+                        CmdOpenDoor();
                     }
-                    else
+                }
+                else
                     {
-                        if (open == true)
-                        {
-                            // Si le joueur clique et a l'autorité sur l'objet, fermer la porte
-                            if (Input.GetMouseButtonDown(0))
+                    if (open == true)// Si le joueur clique et a l'autorité sur l'objet, fermer la porte
+                    {
+                        if (Input.GetMouseButtonDown(0))
                             {
                                 CmdCloseDoor();
                             }

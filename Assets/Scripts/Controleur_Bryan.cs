@@ -5,6 +5,7 @@ public class Controleur_Bryan : NetworkBehaviour
 {
     
     public Camera cam;
+    public GameObject cam2;
     public Camera otherCamera;
     public bool isdead = false;
     public bool IsDead { get => isdead; }
