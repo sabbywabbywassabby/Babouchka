@@ -26,7 +26,9 @@ public class ia_babou : NetworkBehaviour
     public GameObject un;
     public GameObject deux;
     public GameObject trois;
+    public AudioClip Shout;
 
+    private AudioSource audioSource;
     private Transform current_player;
     private Controleur_Bryan control_joueur;
     private bool walking, chasing;   
@@ -46,6 +48,7 @@ public class ia_babou : NetworkBehaviour
         currentDest = destinations[randNum];
         SetPlayer(GameObject.Find("Player_1"));
         indice = 2;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void SetPlayer(GameObject p)
@@ -183,6 +186,8 @@ public class ia_babou : NetworkBehaviour
         if(current_player == player) 
         {
             //son
+            audioSource.clip = Shout;
+            audioSource.Play();
 
             screamer_img.SetActive(true);
             // Attendre la fin du screamer
