@@ -13,25 +13,29 @@ public class ia_babou : NetworkBehaviour
     public List<Transform> destinations;
     public Animator aiAnim;
     public float walkSpeed, chaseSpeed, minIdleTime, maxIdleTime, idleTime, sightDistance, catchDistance, chaseTime, minChaseTime, maxChaseTime, jumpscareTime;
-    public VideoPlayer videoPlayer;
-    public GameObject videoRenderer;
-    private bool walking, chasing;
+    public GameObject spawn_pose;
+    Vector3 dest;    
+    int randNum;
+    Transform currentDest;
+    public int destinationAmount;
+    public Vector3 rayCastOffset;
     public Transform player;
     public Transform player2;
-    public Transform current_player;
-    Transform currentDest;
-    Vector3 dest;
-    public GameObject spawn_pose;
-    int randNum;
-    public int destinationAmount;
-    public Vector3 rayCastOffset; 
-    public string deathScene;
+    public GameObject screamer_img;
+    public GameObject Game_over;
+    public GameObject un;
+    public GameObject deux;
+    public GameObject trois;
+
+    private Transform current_player;
     private Controleur_Bryan control_joueur;
-    
+    private bool walking, chasing;   
     private PlayerSetup playerSetup;
     private PlayerSetup playerSetup_2;
     private Controleur_Bryan current_controleur;
     private PlayerSetup current_setup;
+    private int indice;
+
 
 
     void Start()
@@ -41,6 +45,7 @@ public class ia_babou : NetworkBehaviour
         randNum = Random.Range(0, destinations.Count);
         currentDest = destinations[randNum];
         SetPlayer(GameObject.Find("Player_1"));
+        indice = 2;
     }
 
     private void SetPlayer(GameObject p)
@@ -172,28 +177,41 @@ public class ia_babou : NetworkBehaviour
         ai.speed = 0;
         StopCoroutine("stayIdle");
         walking = false;
-        
-       
-        //afficher le screamer et le son
-        
-        
-        
-        // Attendre la fin du screamer
-        yield return new WaitForSeconds(2f);
-        
 
-        
-        aiAnim.ResetTrigger("punch");
-        aiAnim.SetTrigger("idle");
-        
-        
-        
-        StartCoroutine("stayIdle");  
-        
-        if(current_player == player)
+
+        //afficher le screamer et le son
+        if(current_player == player) 
         {
-            transform.position = spawn_pose.gameObject.transform.position;
-            current_player.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+            //son
+
+            screamer_img.SetActive(true);
+            // Attendre la fin du screamer
+            yield return new WaitForSeconds(2f);
+            screamer_img.SetActive(false);
+            indice--;
+            if (indice == 0)
+            {
+                Game_over.SetActive(true);
+                player2.GetComponent<Respawn>().lives = 0;
+            }
+            if(indice == 1)
+            {
+                un.SetActive(true);
+            }
+            if(indice == 2)
+            {
+                deux.SetActive(true);
+            }
+            if(indice == 3)
+            {
+                trois.SetActive(true);
+            }
+            yield return new WaitForSeconds(2f);
+            un.SetActive(false);
+            deux.SetActive(false);
+            trois.SetActive(false);
+
+            player.transform.position = spawn_pose.gameObject.transform.position;
             current_setup.StartCoroutine("Starter");
             current_controleur.stop_moving = false;
         }
@@ -202,6 +220,9 @@ public class ia_babou : NetworkBehaviour
             current_player.GetComponent<Respawn>().Respaw(spawn_pose.transform);
             current_setup.StartCoroutine("Starter");
         }
-        
+   
+        aiAnim.ResetTrigger("punch");
+        aiAnim.SetTrigger("idle");
+        StartCoroutine("stayIdle"); 
     }
 }

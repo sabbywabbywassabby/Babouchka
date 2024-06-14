@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Mirror;
 
 
@@ -9,11 +10,10 @@ public class car : NetworkBehaviour
     private Transform player;
     private Controleur_Bryan controleur;
 
-    [SyncVar]
+    
     public bool petrol_in;
-    [SyncVar]
-    public bool conducteur_in;
-    [SyncVar]
+    
+    
     public bool win;
 
 
@@ -26,17 +26,16 @@ public class car : NetworkBehaviour
     public GameObject petrol_inventaire;
     public GameObject conducteur;
     public GameObject passager;
-    public GameObject win_canva;
     
     
     public Animator car_anim;
+
     
 
     // Start is called before the first frame update
     void Start()
     {
         petrol_in = false;
-        conducteur_in = false;
         win = false;
     }
 
@@ -52,10 +51,7 @@ public class car : NetworkBehaviour
         {
             controleur.cam2 = conducteur;
         }
-        if (win)
-        {
-            win_canva.SetActive(true);
-        }
+        
 
     }
 
@@ -95,28 +91,7 @@ public class car : NetworkBehaviour
                 No_Gaz_sigle.SetActive(true);
             }
         }
-        else
-        {
-            if (true)
-            {
-                
-                Click.SetActive(true);
-                if (Input.GetMouseButtonDown(0))
-                {
-                    Click.SetActive(false);
-                    if (conducteur_in)
-                        passager.SetActive(true);
-                    else
-                    {
-                        conducteur.SetActive(true);
-                        conducteur_in = true;
-                    }
-                        
-                }
-                
-            }
-            
-        }
+        
     }
 
     private void OnMouseExit()
@@ -125,13 +100,8 @@ public class car : NetworkBehaviour
         No_Gaz_sigle.SetActive(false);
         Click.SetActive(false);
         Need_Key_Car.SetActive(false);
+        
     }
 
     
-    
-    
-    private void StartCar()
-    {
-        car_anim.SetBool("Moving", true);
-    }
 }

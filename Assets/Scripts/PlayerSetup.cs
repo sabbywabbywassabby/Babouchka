@@ -59,7 +59,7 @@ public class PlayerSetup : NetworkBehaviour
 
         script_babou = GameObject.Find("Babouchka").GetComponent<ia_babou>();
 
-        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+        
 
         if (!isLocalPlayer)
         {
@@ -81,7 +81,7 @@ public class PlayerSetup : NetworkBehaviour
             p4.Player = this.gameObject;
             p5.Player = gameObject;
 
-            gameObject.GetComponent<Respawn>().enabled = false;
+            //gameObject.GetComponent<Respawn>().enabled = false;
 
             sceneCamera = Camera.main;
             if (sceneCamera != null)
@@ -164,7 +164,7 @@ public class PlayerSetup : NetworkBehaviour
     {
         Player_Client = GameObject.Find("Player_1");
         Player_Serveur = GameObject.Find("Player_2");
-        //&& Player_Serveur != null && isLocalPlayer
+        
         if (!coroutineStarted && Player_Client != null && Player_Serveur != null)
         {
             coroutineStarted = true;
