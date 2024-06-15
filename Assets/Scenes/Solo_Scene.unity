@@ -18581,7 +18581,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PREMIER JOUEUR
+  m_text: JOUEUR SOLO
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c44d0b584cdf2a14a9853ae7f6a30090, type: 2}
   m_sharedMaterial: {fileID: 6095408184332790198, guid: c44d0b584cdf2a14a9853ae7f6a30090, type: 2}
