@@ -47,7 +47,7 @@ public class ia_babou : NetworkBehaviour
         randNum = Random.Range(0, destinations.Count);
         currentDest = destinations[randNum];
         SetPlayer(GameObject.Find("Player_1"));
-        indice = 2;
+        indice = 4;
         audioSource = GetComponent<AudioSource>();
     }
 

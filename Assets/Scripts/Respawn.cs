@@ -15,7 +15,7 @@ public class Respawn : NetworkBehaviour
 
     private void Start()
     {
-        lives = 3;
+        lives = 4;
         is_dead = false;
     }
 
@@ -46,6 +46,8 @@ public class Respawn : NetworkBehaviour
 
     private IEnumerator HandleRespawn(Vector3 position)
     {
+        print("enter");
+        print(lives);
         transform.position = position;
         screamer.SetActive(true);
         yield return new WaitForSeconds(2f);
