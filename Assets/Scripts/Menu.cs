@@ -18,13 +18,6 @@ public class Menu : MonoBehaviour
         audioMixer.SetFloat("volume", volume);
     }
 
-    public void SetFullScreen(bool isFullScreen)
-    {
-        Screen.fullScreen = isFullScreen;
-    }
-
-
-
 
     public void ControleButton()
     {
