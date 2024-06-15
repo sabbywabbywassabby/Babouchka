@@ -25,7 +25,9 @@ public class PlayerSetup : NetworkBehaviour
     public GameObject black;
     public GameObject red;
     public GameObject green;
+    public AudioClip Sound;
 
+    private AudioSource audioSource;
     public Controleur_Bryan script;
     public ia_babou script_babou;
     Camera sceneCamera;
@@ -47,6 +49,7 @@ public class PlayerSetup : NetworkBehaviour
         black_key = GameObject.Find("black_key");
         green_key = GameObject.Find("green_key");
         petrol_can = GameObject.Find("Petrol");
+        audioSource = GetComponent<AudioSource>();
 
 
        
@@ -148,8 +151,11 @@ public class PlayerSetup : NetworkBehaviour
 
     IEnumerator FadeOut()
     {
+        
+        audioSource.clip = Sound;
+        audioSource.Play();
         Color originalColor = canva_noir.color;
-        float fadeDuration = 5f; // Durée du fondu en secondes
+        float fadeDuration = 5f; // Durï¿½e du fondu en secondes
         for (float t = 0.0f; t < fadeDuration; t += Time.deltaTime)
         {
             float alpha = Mathf.Lerp(1.0f, 0.0f, t / fadeDuration);
@@ -157,7 +163,7 @@ public class PlayerSetup : NetworkBehaviour
             yield return null;
         }
         canva_noir.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0.0f);
-        canva_noir.gameObject.SetActive(false); // Désactive l'image une fois le fondu terminé
+        canva_noir.gameObject.SetActive(false); // Dï¿½sactive l'image une fois le fondu terminï¿½
     }
 
     private void Update()
