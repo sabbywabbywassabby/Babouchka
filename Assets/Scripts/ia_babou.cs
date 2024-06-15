@@ -198,6 +198,7 @@ public class ia_babou : NetworkBehaviour
             {
                 Game_over.SetActive(true);
                 player2.GetComponent<Respawn>().lives = 0;
+                player2.GetComponent<Respawn>().Respaw(spawn_pose.transform);
             }
             if(indice == 1)
             {
@@ -217,13 +218,15 @@ public class ia_babou : NetworkBehaviour
             trois.SetActive(false);
 
             player.transform.position = spawn_pose.gameObject.transform.position;
-            current_setup.StartCoroutine("Starter");
             current_controleur.stop_moving = false;
         }
         else
         {
             current_player.GetComponent<Respawn>().Respaw(spawn_pose.transform);
-            current_setup.StartCoroutine("Starter");
+            if (player2.GetComponent<Respawn>().lives == 0)
+            {
+                Game_over.SetActive(true);
+            }
         }
    
         aiAnim.ResetTrigger("punch");

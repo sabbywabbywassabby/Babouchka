@@ -10,7 +10,8 @@ public class PlayerSetup : NetworkBehaviour
 {
     [SerializeField]
     private Behaviour[] componentsToDisable;
-    
+
+    public bool duo;
 
     private GameObject DoorsParent;
     private GameObject gold_key;
@@ -170,7 +171,8 @@ public class PlayerSetup : NetworkBehaviour
     {
         Player_Client = GameObject.Find("Player_1");
         Player_Serveur = GameObject.Find("Player_2");
-        
+
+             
         if (!coroutineStarted && Player_Client != null && Player_Serveur != null)
         {
             coroutineStarted = true;

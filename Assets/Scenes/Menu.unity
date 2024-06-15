@@ -1066,6 +1066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Game_scene: MultiScene
+  Solo_Scene: Solo_Scene
   ipText: {fileID: 0}
 --- !u!1 &293278403
 GameObject:
@@ -1152,7 +1153,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 283962112}
         m_TargetAssemblyTypeName: mode_jeu, Assembly-CSharp
-        m_MethodName: GameButton
+        m_MethodName: SoloButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

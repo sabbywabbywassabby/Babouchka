@@ -11,6 +11,7 @@ using System.Linq;
 public class mode_jeu : MonoBehaviour
 {
     public string Game_scene;
+    public string Solo_Scene;
     public Text ipText;
     public void GameButton()
     {
@@ -19,7 +20,7 @@ public class mode_jeu : MonoBehaviour
     }
     public void SoloButton()
     {
-        SceneManager.LoadScene(Game_scene);
+        SceneManager.LoadScene(Solo_Scene);
     }
 
     public void Quit()

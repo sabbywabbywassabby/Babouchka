@@ -12,11 +12,15 @@ public class Respawn : NetworkBehaviour
     public GameObject deux;
     public GameObject trois;
     public bool is_dead;
+    public AudioClip Shout;
+
+    private AudioSource audioSource;
 
     private void Start()
     {
         lives = 4;
         is_dead = false;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Call this method to respawn the player
@@ -46,9 +50,9 @@ public class Respawn : NetworkBehaviour
 
     private IEnumerator HandleRespawn(Vector3 position)
     {
-        print("enter");
-        print(lives);
         transform.position = position;
+        audioSource.clip = Shout;
+        audioSource.Play();
         screamer.SetActive(true);
         yield return new WaitForSeconds(2f);
         screamer.SetActive(false);

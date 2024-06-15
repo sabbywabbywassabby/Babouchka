@@ -1397,7 +1397,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 25.898804, y: 0.000030517578}
+  m_AnchoredPosition: {x: -3, y: 0.000030517578}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8619346305603354767
@@ -5521,7 +5521,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 25.898804, y: 0.000030517578}
+  m_AnchoredPosition: {x: -2, y: 0.000030517578}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4379132288063975616
@@ -5969,11 +5969,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   cam: {fileID: 1770880635398868012}
-  cam2: {fileID: 0}
-  otherCamera: {fileID: 0}
-  isdead: 0
   menu_pause: {fileID: 6448919008523361197}
-  anim_control: {fileID: 0}
+  anim_control: {fileID: 4087279716577580605}
   blue_onplayer: {fileID: 5743867218028255641}
   black_on_player: {fileID: 6549581468979921342}
   red_on_player: {fileID: 2616261269850646796}
@@ -6069,6 +6066,7 @@ MonoBehaviour:
   deux: {fileID: 8134038469603200271}
   trois: {fileID: 6846029597970514687}
   is_dead: 0
+  Shout: {fileID: 8300000, guid: 539b2e85717b8c34d84614048f82ccaf, type: 3}
 --- !u!82 &7167790627026876830
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6788,7 +6786,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 25.898804, y: 0.000030517578}
+  m_AnchoredPosition: {x: -5, y: 0.000030517578}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8727670013766886523
@@ -6864,7 +6862,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 25.898804, y: 0.000030517578}
+  m_AnchoredPosition: {x: -5, y: 0.000030517578}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3544250403336130211

@@ -49,7 +49,7 @@ public class car : NetworkBehaviour
         }
         if(player != null)
         {
-            controleur.cam2 = conducteur;
+            
         }
         
 

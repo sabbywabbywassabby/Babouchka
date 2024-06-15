@@ -4,11 +4,7 @@ using Mirror;
 public class Controleur_Bryan : NetworkBehaviour
 {
     
-    public Camera cam;
-    public GameObject cam2;
-    public Camera otherCamera;
-    public bool isdead = false;
-    public bool IsDead { get => isdead; }
+    public Camera cam;    
     public GameObject menu_pause;
     public Animator anim_control;
     public GameObject blue_onplayer;
@@ -20,21 +16,8 @@ public class Controleur_Bryan : NetworkBehaviour
     private float rotation_speed = 200f;
     private float sensitivity = -2f;
     private float mouseX, mouseY;
-    private PickUp p;
-    private PickUp p_bleu;
-    private PickUp p_green;
-    private PickUp p_black;
-    private PickUp p_red;
-    private GameObject Cle;
-    private GameObject GoldKey;
-    private GameObject TheEnd;
-    private GameObject TheEndTxt;
-    private GameObject Txt;
-    private GameObject Click;
-    private GameObject TxtClick;
-    private GameObject Player2;
+
     public PickUp key_on_player;
-    private Controleur_Bryan controle_2;
     public bool stop_moving;
     public bool only_cam;
     
@@ -44,55 +27,10 @@ public class Controleur_Bryan : NetworkBehaviour
     {
         stop_moving = false;
         only_cam = false;
-        
         anim_control = GetComponent<Animator>();
-        Cursor.lockState = CursorLockMode.Locked;
-        Cle = GameObject.Find("key");
-        p = Cle.GetComponentInChildren<PickUp>();
-        p_black = GameObject.Find("black_key").GetComponentInChildren<PickUp>();
-        p_bleu = GameObject.Find("blue_key").GetComponentInChildren<PickUp>();
-        p_green = GameObject.Find("green_key").GetComponentInChildren<PickUp>();
-        p_red = GameObject.Find("red_key").GetComponentInChildren<PickUp>();
-        GoldKey = GameObject.Find("Take");
-        Click = GameObject.Find("Click");
-        TheEnd = GameObject.Find("TheEnd");
-        TheEndTxt = TheEnd.transform.Find("Txt").gameObject;
-        Txt = GoldKey.transform.Find("E").gameObject;
-        TxtClick = Click.transform.Find("Click").gameObject;
-
-        Player2 = GameObject.Find("Player_2");
-        otherCamera = Player2.GetComponentInChildren<Camera>();
-        controle_2 = Player2.GetComponent<Controleur_Bryan>();
-        
+        Cursor.lockState = CursorLockMode.Locked;        
     }
 
-    public void Die()
-    {
-        RpcDie();
-        isdead = true;
-    }
-
-    void RpcDie()
-    {
-        anim_control.SetBool("is_dying", true);
-    }
-
-    [Command]
-    public void GameOver()
-    {
-        RpcOver();
-    }
-
-    [ClientRpc]
-    public void RpcOver()
-    {
-        TheEndTxt.SetActive(true);
-    }
-
-    public void Look(Vector3 direction)
-    {
-        cam.transform.rotation = Quaternion.LookRotation(direction - cam.transform.position);
-    }
 
     public void Drop()
     {
@@ -105,9 +43,7 @@ public class Controleur_Bryan : NetworkBehaviour
 
         if(key_on_player != null){
             key_on_player.Drop(dropPosition);
-        }
-        
-        
+        }   
     }
 
     // Update is called once per frame
@@ -160,10 +96,6 @@ public class Controleur_Bryan : NetworkBehaviour
         bool isWalkingBack = verticalInput < -0.1f;
         anim_control.SetBool("is_walking_back", isWalkingBack);
 
-        //animation attraper un objet
-        //if ((Input.GetKey(KeyCode.E) && Txt.activeSelf) || (Input.GetMouseButtonDown(0) && TxtClick.activeSelf))
-        //{ anim_control.SetBool("is_picking", true); }
-
 
         //Faire tomber la cle :
         if (Input.GetKey(KeyCode.Q)) // Si le joueur appuie sur la touche Q
@@ -171,29 +103,7 @@ public class Controleur_Bryan : NetworkBehaviour
             Drop();
         }
 
-        if (Input.GetKey(KeyCode.M))
-        {
-            anim_control.SetBool("dods", true);
-        }
-
-        if (Input.GetKey(KeyCode.L))
-        {
-            Die();
-        }
-        if (isdead)
-        {
-            if (anim_control.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f && !controle_2.IsDead)
-            {
-                cam.enabled = false;
-                otherCamera.enabled = true;
-
-                //gameObject.SetActive(false);
-            }
-            if(anim_control.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f && controle_2.IsDead)
-            {
-                GameOver();
-            }
-        }
+        
         
     }
 }
